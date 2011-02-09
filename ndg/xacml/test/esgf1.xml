@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:esgf-policy"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    xmlns:esg="http://www.earthsystemgrid.org/"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>
+        NDG XACML example for unit tests: add custom ESG Group/Role Attribute Value type 
+    </Description>
+    
+    <!-- 
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <!-- Pattern match all request URIs beginning with / -->
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>   
+    
+    <!-- Deny everything by default -->
+    <Rule RuleId="DenyAllRule" Effect="Deny"/>
+    <!-- 
+        Following rules punch holes through the deny everything rule above
+        because the rule combining algorithm is set to permit overrides - see 
+        Policy element above
+    -->  
+    <Rule RuleId="AtLeastOneSubjectAttributeBased" Effect="Permit">
+        <!-- 
+            Subject must have at least one of a group of roles
+            
+            Resource id is a regular expression
+        -->
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/at-least-one-of-subject-role-restricted.*$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        
+        <!-- 
+            The condition narrows down the constraints layed down in the target to
+            something more specific
+            
+            The user must have at least one of the roles set - in this
+            case 'staff'
+        -->
+        <Condition>
+            <Apply FunctionId="urn:grouprole-at-least-one-member-of">
+                <SubjectAttributeDesignator 
+                    AttributeId="urn:esg:attr"
+                    DataType="urn:grouprole"/>
+                <Apply FunctionId="urn:grouprole-bag">
+                    <AttributeValue DataType="urn:grouprole">
+                        <esg:groupRole>
+                            <esg:group>ACME</esg:group>
+                            <esg:role>default</esg:role>
+                        </esg:groupRole>
+                    </AttributeValue>
+                    <AttributeValue DataType="urn:grouprole">
+                        <esg:groupRole>
+                            <esg:group>Staff</esg:group>
+                            <esg:role>Administrator</esg:role>
+                        </esg:groupRole>
+                    </AttributeValue>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+    <Rule RuleId="Subject doesn't have any of specified roles" Effect="Permit">
+        <!-- 
+            Example where test subject doesn't have the required roles
+        -->
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/subject-does-not-have-any-of-specified-roles.*$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        
+        <!-- 
+            The condition narrows down the constraints layed down in the target to
+            something more specific
+            
+            The user must have at least one of the roles set - in this
+            case 'staff'
+        -->
+        <Condition>
+            <Apply FunctionId="urn:grouprole-at-least-one-member-of">
+                <SubjectAttributeDesignator 
+                    AttributeId="urn:esg:attr"
+                    DataType="urn:grouprole"/>
+                <Apply FunctionId="urn:grouprole-bag">
+                    <AttributeValue DataType="urn:grouprole">
+                        <esg:groupRole>
+                            <esg:group>ACME</esg:group>
+                            <esg:role>PrincipalInvestigator</esg:role>
+                        </esg:groupRole>
+                    </AttributeValue>
+                    <AttributeValue DataType="urn:grouprole">
+                        <esg:groupRole>
+                            <esg:group>Staff</esg:group>
+                            <esg:role>Administrator</esg:role>
+                        </esg:groupRole>
+                    </AttributeValue>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>
