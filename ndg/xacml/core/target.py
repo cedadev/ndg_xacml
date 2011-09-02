@@ -194,6 +194,6 @@ class Target(XacmlCoreBase):
         for i, childMatch in enumerate(targetChild.matches):
             matchStatusValues[i] = childMatch.evaluate(request)
             
-        # Any match => overall match      
-        return any(matchStatusValues)
+        # All match => overall match      
+        return all(matchStatusValues)
 

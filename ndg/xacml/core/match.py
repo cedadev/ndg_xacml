@@ -307,15 +307,14 @@ class MatchBase(XacmlCoreBase):
                                      self.attributeValue))
             
         # Iterate through each attribute in the request in turn matching it
-        # against the target using the generated _attributeMatch function
+        # against the target using the generated _attributeMatch function.
+        # The target match attribute must match any of the request attributes
+        # for an overall True match status.
         #
-        # Any Match element NOT matching will result in an overall status of
-        # no match.
-        #
-        # Continue iterating through the whole list even if a False status
-        # is found.  The other attributes need to be checked in case an 
-        # error occurs.  In this case the top-level PDP exception handling 
-        # block will catch it and set an overall decision of INDETERMINATE
+        # Continue iterating through the whole list even if a True status
+        # is found.  The other attributes need to be checked in case an
+        # error occurs.  In this case the top-level PDP exception handling
+        # block will catch it and set an overall decision of INDETERMINATE.
         attrMatchStatusValues = [False]*len(requestAttributeValues)
         matchFunction = self.function
         matchAttributeValue = self.attributeValue
@@ -334,9 +333,8 @@ class MatchBase(XacmlCoreBase):
                               requestAttributeValue,
                               self.matchId)
         
-        # Need check for len() because all([]) yields True!           
-        matchStatus = (len(attrMatchStatusValues) > 0 and 
-                       all(attrMatchStatusValues))
+        # Return true if a match was found.
+        matchStatus = any(attrMatchStatusValues)
         
         return matchStatus
     
