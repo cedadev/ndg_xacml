@@ -257,22 +257,51 @@ class Decision(object):
     @cvar TYPES: list of valid decision strings
     @type TYPES: tuple
     
+    @cvar PERMIT: "Permit" decision type instance
+    @type PERMIT: PermitDecision
+    
+    @cvar DENY: "Deny" decision type instance
+    @type DENY: DenyDecision
+    
+    @cvar INDETERMINATE: "Indeterminate" decision type instance
+    @type INDETERMINATE: IndeterminateDecision
+        
+    @cvar NOT_APPLICABLE: "NotApplicable" decision type instance
+    @type NOT_APPLICABLE: NotApplicableDecision
+       
     @ivar __value: decision value
     @type __value: string
     """
     
-    # "Permit" decision type
+    # "Permit" decision type string
     PERMIT_STR = "Permit"
     
-    # "Deny" decision type
+    # "Deny" decision type string
     DENY_STR = "Deny"
     
-    # "Indeterminate" decision type
+    # "Indeterminate" decision type string
     INDETERMINATE_STR = "Indeterminate"
     
+    # "NotApplicable" decision type string
     NOT_APPLICABLE_STR = "NotApplicable"
         
     TYPES = (PERMIT_STR, DENY_STR, INDETERMINATE_STR, NOT_APPLICABLE_STR)
+    
+    # "Permit" decision type as an instance of PermitDecision - see 
+    # re-assignment later after definition of PermitDecision class
+    PERMIT = None
+    
+    # "Deny" decision type as instance of DenyDecision - see 
+    # re-assignment later after definition of DenyDecision class
+    DENY = None
+    
+    # "Indeterminate" decision type as instance of IndeterminateDecision - see 
+    # re-assignment later after definition of IndeterminateDecision class
+    INDETERMINATE = None
+        
+    # "NotApplicable" decision type as instance of NotApplicableDecision - see 
+    # re-assignment later after definition of NotApplicableDecision class
+    NOT_APPLICABLE = None
     
     __slots__ = ('__value',)
     

@@ -199,8 +199,8 @@ class FirstApplicableRuleCombiningAlg(RuleCombiningAlgInterface):
                 continue
 
             if decision == Decision.INDETERMINATE:
-                log.debug("Rule %r is indeterminate, returning overall indeterminate decision",
-                          rule.id)
+                log.debug("Rule %r is indeterminate, returning overall "
+                          "indeterminate decision", rule.id)
                 return Decision.INDETERMINATE
         
         log.debug('No rules were applicable to the request, returning '

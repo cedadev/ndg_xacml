@@ -12,9 +12,12 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = '$Id$'
 
 # Bootstrap setuptools if necessary.
-from ez_setup import use_setuptools
-use_setuptools()
-from setuptools import setup, find_packages
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    from ez_setup import use_setuptools
+    use_setuptools()
+    from setuptools import setup, find_packages
 
 _longDescription = """\
 XACML 2.0 implementation for CEDA (the Centre for Environmental Data Archival) 
@@ -26,9 +29,21 @@ expressing access control policies.
 
 See: http://www.oasis-open.org/committees/xacml/
 
+Release 0.4.1
+-------------
+Fixes and enhancements from Richard Wilkinson (Tessella):
+ * Added an implementation of the first-applicable rule combining algorithm.
+ * Fix for ticket:1130 and related bug
+  - In ndg.xacml.core.target.Target._matchChild, all SubjectMatches within a 
+  Subject must evaluate to true for an overall match for the Subject (and 
+  similarly for Resource, Action and Environment).
+  - In ndg.xacml.core.match.MatchBase, matching of the attribute value for a 
+  SubjectMatch with any of the values for the selected attribute of the Subject 
+  should result in an overall match (and similarly for Resource, Action and 
+  Environment).
 
 Release 0.4.0
-
+-------------
 Added support for custom DataTypes and functions. e.g.
 
         # Add attribute value type
@@ -42,9 +57,8 @@ Added support for custom DataTypes and functions. e.g.
         # Add new function
         functionMap['<my function type uri'] = MyNewFunctionClass
 
-
 Release 0.3
-
+-----------
 Includes important fixes for equals functions, and improvement to at least one
 member functions.  Unit tests improved with wider coverage of different rule
 definitions and example request contexts.
@@ -53,9 +67,8 @@ Improved and added to support for context handler and Policy Information Point
 interfaces including the ability for the PDP to call back to a PIP via a 
 Context handler to retrieve additional subject attributes.
 
-
 Release 0.2
-
+-----------
 Only the parts of the specification immediately required for CEDA have been 
 implemented in this initial release:
  Policy Decision Point;
@@ -77,7 +90,7 @@ include new parsers, functions and attribute types
 
 setup(
     name =           		'ndg_xacml',
-    version =        		'0.4.0',
+    version =        		'0.4.1',
     description =           'XACML 2.0 implementation for the NERC DataGrid',
     long_description =		_longDescription,
     author =         		'Philip Kershaw',

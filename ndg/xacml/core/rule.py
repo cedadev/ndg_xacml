@@ -393,7 +393,7 @@ class Rule(XacmlCoreBase):
             log.debug('Rule %r evaluates to %s', self.id, decision) 
             return decision
         
-        except Exception, e:
+        except Exception:
             _traceback = traceback.format_exc()
             log.error('Error occurred evaluating rule %r, returning '
                       'Indeterminate result to caller: %s',
