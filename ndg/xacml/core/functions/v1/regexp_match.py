@@ -33,11 +33,16 @@ class RegexpMatchBase(AbstractFunction):
     
     @cvar CLASS_NAME_SUFFIX: suffix for all regular expression class names
     @type CLASS_NAME_SUFFIX: string
+    
+    @cvar compiled_regexes: cache of compiled regular expressions
+    @type compiled_regexes: dict of string mappings to re.RegexObject
     """
     FUNCTION_NS = None
     FUNCTION_NS_SUFFIX = '-regexp-match'
     CLASS_NAME_SUFFIX = 'RegexpMatch'
     TYPE = None
+
+    compiled_regexes = {}
     
     def evaluate(self, pat, input):
         """Match URI against regular expression pattern
@@ -57,7 +62,11 @@ class RegexpMatchBase(AbstractFunction):
             raise TypeError('Expecting %r derived type for "input"; got %r' %
                             (self.__class__.TYPE, type(input)))
             
-        return bool(re.match(pat.value, input.value))
+        compiled_regex = self.compiled_regexes.get(pat.value, None)
+        if compiled_regex is None:
+            compiled_regex = re.compile(pat.value)
+            self.compiled_regexes[pat.value] = compiled_regex
+        return bool(compiled_regex.match(input.value))
     
 
 attributeValueClassFactory = AttributeValueClassFactory()
