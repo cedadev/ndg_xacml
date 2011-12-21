@@ -28,7 +28,7 @@ class TargetReader(ETreeAbstractReader):
     """
     TYPE = Target
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse Target object
         
         @param obj: input object to parse
@@ -54,23 +54,26 @@ class TargetReader(ETreeAbstractReader):
             if localName == xacmlType.SUBJECTS_ELEMENT_LOCAL_NAME:
                 for subjElem in childElem:
                     SubjectReader = ReaderFactory.getReader(Subject)
-                    target.subjects.append(SubjectReader.parse(subjElem))
+                    target.subjects.append(SubjectReader.parse(subjElem,
+                                                               common))
                                 
             elif localName == xacmlType.RESOURCES_ELEMENT_LOCAL_NAME:
                 for resourceElem in childElem:
                     ResourceReader = ReaderFactory.getReader(Resource)
-                    target.resources.append(ResourceReader.parse(resourceElem))
+                    target.resources.append(ResourceReader.parse(resourceElem,
+                                                                 common))
                 
             elif localName == xacmlType.ACTIONS_ELEMENT_LOCAL_NAME:
                 for targetElem in childElem:
                     ActionReader = ReaderFactory.getReader(Action)
-                    target.actions.append(ActionReader.parse(targetElem))
+                    target.actions.append(ActionReader.parse(targetElem,
+                                                             common))
                 
             elif localName == xacmlType.ENVIRONMENTS_ELEMENT_LOCAL_NAME:
                 for environElem in childElem:
                     EnvironmentReader = ReaderFactory.getReader(Environment)
                     target.environments.append(EnvironmentReader.parse(
-                                                                environElem))
+                                                        environElem, common))
             else:
                 raise XMLParseError("XACML Target child element name %r not "
                                     "recognised" % localName)

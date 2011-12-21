@@ -26,11 +26,13 @@ class PolicyReader(ETreeAbstractReader):
     @type TYPE: type"""
     TYPE = Policy
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse policy object
         
         @param obj: input object to parse
         @type obj: ElementTree Element, or stream object
+        @param common: parsing common data
+        @type common: from ndg.xacml.parsers.common.Common
         @return: new XACML expression instance
         @rtype: ndg.xacml.core.policy.Policy derived type 
         @raise XMLParseError: error reading element  
@@ -38,16 +40,31 @@ class PolicyReader(ETreeAbstractReader):
         combiner, combiner parameters and obligations elements.         
         """
         elem = super(PolicyReader, self)._parse(obj)
+
+        return self.processElement(elem, common)
+
+    def processElement(self, elem, common):
+        """Parse policy object
         
+        @param elem: root element of policy
+        @type elem: ElementTree Element
+        @param common: parsing common data
+        @type common: from ndg.xacml.parsers.common.Common
+        @return: new XACML expression instance
+        @rtype: ndg.xacml.core.policy.Policy derived type 
+        @raise XMLParseError: error reading element  
+        @raise NotImplementedError: parsing is not implemented for rule
+        combiner, combiner parameters and obligations elements.         
+        """
         # XACML type to instantiate
-        xacmlType = PolicyReader.TYPE
+        xacmlType = self.TYPE
         policy = xacmlType()
-        
+
         localName = QName.getLocalPart(elem.tag)
         if localName != xacmlType.ELEMENT_LOCAL_NAME:
             raise XMLParseError("No \"%s\" element found" % 
                                 xacmlType.ELEMENT_LOCAL_NAME)
-        
+
         # Unpack *required* attributes from top-level element
         attributeValues = []
         for attributeName in (xacmlType.POLICY_ID_ATTRIB_NAME,
@@ -78,11 +95,12 @@ class PolicyReader(ETreeAbstractReader):
                     
             elif localName == xacmlType.POLICY_DEFAULTS_LOCAL_NAME:
                 PolicyDefaultsReader = ReaderFactory.getReader(PolicyDefaults)
-                policy.policyDefaults = PolicyDefaultsReader.parse(childElem)
+                policy.policyDefaults = PolicyDefaultsReader.parse(childElem,
+                                                                   common)
                    
             elif localName == Target.ELEMENT_LOCAL_NAME:
                 TargetReader = ReaderFactory.getReader(Target)
-                policy.target = TargetReader.parse(childElem)
+                policy.target = TargetReader.parse(childElem, common)
              
             elif localName == xacmlType.COMBINER_PARAMETERS_LOCAL_NAME:
                 raise NotImplementedError()
@@ -93,11 +111,12 @@ class PolicyReader(ETreeAbstractReader):
             elif localName == VariableDefinition.ELEMENT_LOCAL_NAME:
                 VariableDefinitionReader = ReaderFactory.getReader(
                                                             VariableDefinition)
-                variableDefinition = VariableDefinitionReader.parse(childElem)
+                variableDefinition = VariableDefinitionReader.parse(childElem,
+                                                                    common)
                 
             elif localName == Rule.ELEMENT_LOCAL_NAME:
                 RuleReader = ReaderFactory.getReader(Rule)
-                rule = RuleReader.parse(childElem)
+                rule = RuleReader.parse(childElem, common)
                 if rule.id in [_rule.id for _rule in policy.rules]:
                     raise XMLParseError("Duplicate Rule ID %r found" % rule.id)
                     
@@ -110,6 +129,8 @@ class PolicyReader(ETreeAbstractReader):
             else:
                 raise XMLParseError("XACML Policy child element name %r not "
                                     "recognised" % localName)
-        
+
+        # Record reference in case of references to this policy.
+        common.policyFinder.addPolicyReference(policy)
+
         return policy
-    

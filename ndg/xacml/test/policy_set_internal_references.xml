@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:policy-set-1"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+
+    <Target>
+        <Resources>
+            <Resource>
+                <!-- Pattern match all request URIs beginning with / -->
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!--
+        PolicySet for download service
+    -->
+    <PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:policy-set-2"
+        PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides">
+
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match all request URIs beginning with / -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/download/.*$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+
+        <!--
+            PolicySet for resources delivered by service
+        -->
+        <PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:policy-set-3"
+            PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides">
+
+            <Target/>
+
+            <!-- Deny everything by default -->
+            <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy-1"
+                RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides">
+                <Target/>
+                <Rule RuleId="policy-set-2:DenyAllRule" Effect="Deny"/>
+            </Policy>
+
+            <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy-2"
+                RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+                <Description>
+                    Tests for the first-applicable rule combining algorithm. For a given
+                    resource, action and subject, the decision is taken from the first rule
+                    that matches.
+                </Description>
+
+                <!--
+                    The Policy target(s) define which requests apply to the whole policy
+                -->
+                <Target>
+                    <Resources>
+                        <Resource>
+                            <!-- Pattern match all request URIs beginning with / -->
+                            <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/[^/]+/set1/.*$</AttributeValue>
+                                <ResourceAttributeDesignator
+                                    AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                                    DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                            </ResourceMatch>
+                        </Resource>
+                    </Resources>
+                </Target>
+
+                <Rule RuleId="policy-3:SingleSubjectRoleBasedWithAction-1" Effect="Permit">
+                    <!--
+                        Allow access based on a single subject role and given action
+                    -->
+                    <Target>
+                        <Subjects>
+                            <Subject>
+                                <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">staff</AttributeValue>
+                                    <SubjectAttributeDesignator
+                                        AttributeId="urn:ndg:security:authz:1.0:attr"
+                                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                                </SubjectMatch>
+                            </Subject>
+                        </Subjects>
+                        <Resources>
+                            <Resource>
+                                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/[^/]+/set1/action-and-single-subject-role-restricted-1</AttributeValue>
+                                    <ResourceAttributeDesignator
+                                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                                </ResourceMatch>
+                            </Resource>
+                        </Resources>
+                        <Actions>
+                            <Action>
+                                <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+                                    <ActionAttributeDesignator
+                                        AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                                </ActionMatch>
+                            </Action>
+                        </Actions>
+                    </Target>
+                </Rule>
+            </Policy>
+        </PolicySet>
+
+        <PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:policy-set-4"
+            PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides">
+
+            <Target/>
+
+            <!-- Deny everything by default -->
+            <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy-3"
+                RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides">
+                <Target/>
+                <Rule RuleId="policy-set-2:DenyAllRule" Effect="Deny"/>
+            </Policy>
+
+            <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy-4"
+                RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+                <Description>
+                    Tests for the first-applicable rule combining algorithm. For a given
+                    resource, action and subject, the decision is taken from the first rule
+                    that matches.
+                </Description>
+
+                <!--
+                    The Policy target(s) define which requests apply to the whole policy
+                -->
+                <Target>
+                    <Resources>
+                        <Resource>
+                            <!-- Pattern match all request URIs beginning with / -->
+                            <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/[^/]+/set2/.*$</AttributeValue>
+                                <ResourceAttributeDesignator
+                                    AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                                    DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                            </ResourceMatch>
+                        </Resource>
+                    </Resources>
+                </Target>
+
+                <Rule RuleId="policy-3:SingleSubjectRoleBasedWithAction-2" Effect="Permit">
+                    <!--
+                        Allow access based on a single subject role and given action
+                    -->
+                    <Target>
+                        <Subjects>
+                            <Subject>
+                                <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">staff</AttributeValue>
+                                    <SubjectAttributeDesignator
+                                        AttributeId="urn:ndg:security:authz:1.0:attr"
+                                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                                </SubjectMatch>
+                            </Subject>
+                        </Subjects>
+                        <Resources>
+                            <Resource>
+                                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/[^/]+/set2/action-and-single-subject-role-restricted-2</AttributeValue>
+                                    <ResourceAttributeDesignator
+                                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                                </ResourceMatch>
+                            </Resource>
+                        </Resources>
+                        <Actions>
+                            <Action>
+                                <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">read</AttributeValue>
+                                    <ActionAttributeDesignator
+                                        AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+                                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                                </ActionMatch>
+                            </Action>
+                        </Actions>
+                    </Target>
+                </Rule>
+
+                <!-- Deny everything by default -->
+                <Rule RuleId="policy-3:DenyAllRule" Effect="Deny"/>
+            </Policy>
+        </PolicySet>
+    </PolicySet>
+
+    <!--
+        PolicySet for view service
+    -->
+    <PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:policy-set-5"
+        PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:permit-overrides">
+
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match all request URIs beginning with / -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/view/.*$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+
+        <!--
+            Use same resource PolicySet as for download service
+        -->
+        <PolicySetIdReference>urn:ndg:security:1.0:authz:test:policy-set-3</PolicySetIdReference>
+        <PolicySetIdReference>urn:ndg:security:1.0:authz:test:policy-set-4</PolicySetIdReference>
+    </PolicySet>
+
+</PolicySet>

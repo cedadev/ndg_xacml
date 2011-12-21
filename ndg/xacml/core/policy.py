@@ -9,13 +9,12 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __license__ = "BSD - see LICENSE file in top-level directory"
 __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
-import traceback
 import logging
 log = logging.getLogger(__name__)
 
 from ndg.xacml.utils import TypedList
 from ndg.xacml.parsers import AbstractReaderFactory, AbstractReader
-from ndg.xacml.core import XacmlCoreBase
+from ndg.xacml.core.policybase import PolicyBase
 from ndg.xacml.core.policydefaults import PolicyDefaults
 from ndg.xacml.core.target import Target
 from ndg.xacml.core.rule import Rule
@@ -24,11 +23,6 @@ from ndg.xacml.core.rule_combining_alg import (RuleCombiningAlgClassFactory,
                                                RuleCombiningAlgInterface)
 from ndg.xacml.core.functions import (UnsupportedStdFunctionError,
                                       UnsupportedFunctionError)
-
-# Evaluation of a request context
-from ndg.xacml.core.context.response import Response
-from ndg.xacml.core.context.result import Result, Decision, StatusCode
-from ndg.xacml.core.context.exceptions import XacmlContextError
 
 
 class PolicyParseError(Exception):
@@ -39,7 +33,7 @@ class InvalidPolicyXmlNsError(PolicyParseError):
     """Invalid XML namespace for policy document"""
 
 
-class Policy(XacmlCoreBase):
+class Policy(PolicyBase):
     """XACML Policy
     
     @cvar DEFAULT_XACML_VERSION: default is 2.0
@@ -96,6 +90,7 @@ class Policy(XacmlCoreBase):
     COMBINER_PARAMETERS_LOCAL_NAME = "CombinerParameters"
     RULE_COMBINER_PARAMETERS_LOCAL_NAME = "RuleCombinerParameters"
     OBLIGATIONS_LOCAL_NAME = "Obligations"
+    POLICY_ID_REFERENCE = "PolicyIdReference"
     
     __slots__ = (
         '__policyId',
@@ -223,6 +218,8 @@ class Policy(XacmlCoreBase):
         self.__policyId = value
 
     policyId = property(_getPolicyId, _setPolicyId, None, "Policy Id")
+    # Generic property for ID of Policy and PolicySet
+    ident = property(_getPolicyId, None, None, "Policy Id")
 
     def _getVersion(self):
         '''@return: policy version
@@ -390,63 +387,11 @@ class Policy(XacmlCoreBase):
                               None, 
                               "Policy PolicyDefaults element")   
 
-    def evaluate(self, request):
-        """Make an access control decision for the given request based on this
-        policy
-        
-        @param request: XACML request context
-        @type request: ndg.xacml.core.context.request.Request
-        @return: XACML response instance
-        @rtype: ndg.xacml.core.context.response.Response
-        @raise XacmlContextError: error evaluating input request context
+    def evaluateCombiningAlgorithm(self, context):
+        """Evaluates the rule combining algorithm for this policy.
+        @param context: the request context
+        @type context: ndg.xacml.core.request.Request
+        @return: result of the evaluation - the decision for this policy
+        @rtype: ndg.xacml.core.context.result.Decision
         """
-        response = Response()
-        result = Result.createInitialised(decision=Decision.NOT_APPLICABLE)
-        response.results.append(result)
-            
-        # Exception block around all rule processing in order to set
-        # INDETERMINATE response from any exceptions raised
-        try:
-            log.debug('Checking policy %r target for match with request...',
-                      self.policyId)
-            
-            target = self.target
-            
-            # If no target is set, ALL requests are counted as matches
-            if target is not None:
-                if not target.match(request):
-                    # The target didn't match so the whole policy does not apply
-                    # to this request
-                    log.debug('No match for policy target setting %r decision',
-                              Decision.NOT_APPLICABLE_STR)
-                    
-                    result.decision = Decision.NOT_APPLICABLE
-                    return response
-            
-            log.debug('Request matches the Policy %r target', self.policyId)
-            
-            # Apply the rule combining algorithm here combining the 
-            # effects from the rules evaluated into an overall decision
-            result.decision = self.ruleCombiningAlg.evaluate(self.rules,
-                                                             request)
-        except XacmlContextError, e:
-            log.error('Exception raised evaluating request context, returning '
-                      '%r decision:%s', 
-                      e.response.results[0].decision, 
-                      traceback.format_exc())
-            
-            result = e.response.results[0]
-            
-        except Exception:
-            # Catch all so that nothing is handled from within the scope of this
-            # method
-            log.error('No PDPError type exception raised evaluating request '
-                      'context, returning %r decision:%s', 
-                      Decision.INDETERMINATE_STR, 
-                      traceback.format_exc()) 
-                       
-            result.decision = Decision.INDETERMINATE
-            result.status.statusCode.value = StatusCode.PROCESSING_ERROR
-            
-        return response
-
+        return self.ruleCombiningAlg.evaluate(self.rules, context)

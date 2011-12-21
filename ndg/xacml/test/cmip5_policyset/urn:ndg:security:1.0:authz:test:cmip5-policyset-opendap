@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:cmip5-policyset-opendap"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+    <Description>
+        Policy for ESG THREDDS server OPeNDAP access
+    </Description>
+
+    <!--
+        Overall scope of policy set - restrict to relevant host and protocol.
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-decadal1960</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-decadal1965</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-decadal1970</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-decadal1975</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-historical</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadgem2-a</PolicyIdReference>
+    <PolicyIdReference>urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadgem2-es</PolicyIdReference>
+
+    <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy1:policy-authorised-permit"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>
+            Permits access to authorised users provided access is not denied by an earlier policy.
+        </Description>
+
+        <Target>
+            <Subjects>
+                <Subject>
+                    <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">cmip5_research</AttributeValue>
+                        <SubjectAttributeDesignator AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </SubjectMatch>
+                </Subject>
+                <Subject>
+                    <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">cmip5_test</AttributeValue>
+                        <SubjectAttributeDesignator AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </SubjectMatch>
+                </Subject>
+            </Subjects>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+
+        <Rule RuleId="cmip5-policyset-opendap RF Permit" Effect="Permit"/>
+    </Policy>
+</PolicySet>

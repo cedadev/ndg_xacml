@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:cmip5-policyset-httpserver"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+    <Description>
+        Policy for ESG THREDDS server HTTP(S) access
+    </Description>
+
+    <!--
+        Overall scope of policy set - restrict to relevant host and protocol.
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/fileServer/</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!-- Include PolicyIdReferences here -->
+</PolicySet>

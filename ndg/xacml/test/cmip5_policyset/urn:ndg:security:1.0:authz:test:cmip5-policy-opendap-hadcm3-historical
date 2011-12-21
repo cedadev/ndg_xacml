@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadcm3-historical"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:esg="http://www.earthsystemgrid.org/"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Description>
+    	Policy for OPeNDAP access: HadCM3.historical
+    </Description>
+
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.historical\.</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <Rule RuleId="cmip5-policy-opendap-hadcm3-historical RF Deny" Effect="Deny">
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.historical\.mon\.aerosol\.aero\.r1i1p1\.[^.?/]*\.20110728\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.historical\.mon\.atmos\.Amon\.r1i1p1\.[^.?/]*\.20110728\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.historical\.mon\.land\.Lmon\.r1i1p1\.[^.?/]*\.20110728\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.historical\.mon\.landIce\.LImon\.r1i1p1\.[^.?/]*\.20110728\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
+</Policy>

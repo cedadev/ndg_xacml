@@ -13,7 +13,8 @@ import logging
 log = logging.getLogger(__name__)
 
 from ndg.xacml.core.context.pdpinterface import PDPInterface
-from ndg.xacml.core.policy import Policy
+from ndg.xacml.core.policybase import PolicyBase
+from ndg.xacml.finder.defaultfinder import getDefaultPolicyFinder
 
 
 class PDP(PDPInterface):
@@ -37,7 +38,7 @@ class PDP(PDPInterface):
             self.policy = policy
         
     @classmethod
-    def fromPolicySource(cls, source, readerFactory):
+    def fromPolicySource(cls, source, readerFactory, finder=None):
         """Create a new PDP instance with a given policy
         @param source: source for policy
         @type source: type (dependent on the reader set, it could be for example
@@ -45,12 +46,17 @@ class PDP(PDPInterface):
         @param readerFactory: reader factory returns the reader to use to read 
         this policy
         @type readerFactory: ndg.xacml.parsers.AbstractReader derived type
+        @param finder: policy finder
+        @type finder: ndg.xacml.finder.PolicyFinderBase subclass
         """           
         pdp = cls()
-        pdp.setPolicyFromSource(source, readerFactory)
+        if not finder:
+            # Set a default policy finder.
+            finder = getDefaultPolicyFinder(source)
+        pdp.setPolicyFromSource(source, readerFactory, finder)
         return pdp
     
-    def setPolicyFromSource(self, source, readerFactory):
+    def setPolicyFromSource(self, source, readerFactory, finder):
         """initialise PDP with the given policy
         @param source: source for policy
         @type source: type (dependent on the reader set, it could be for example
@@ -58,8 +64,10 @@ class PDP(PDPInterface):
         @param readerFactory: reader factory returns the reader to use to read 
         this policy
         @type readerFactory: ndg.xacml.parsers.AbstractReader derived type
+        @param finder: policy finder
+        @type finder: ndg.xacml.finder.PolicyFinderBase subclass
         """           
-        self.policy = Policy.fromSource(source, readerFactory)
+        self.policy = PolicyBase.fromSource(source, readerFactory, finder)
         
     @property
     def policy(self):
@@ -76,9 +84,9 @@ class PDP(PDPInterface):
         decisions
         @type value: ndg.xacml.core.policy.Policy
         '''
-        if not isinstance(value, Policy):
+        if not isinstance(value, PolicyBase):
             raise TypeError('Expecting %r derived type for "policy" input; got '
-                            '%r instead' % (Policy, type(value)))
+                            '%r instead' % (PolicyBase, type(value)))
         self.__policy = value
                                         
     def evaluate(self, request):
@@ -90,7 +98,7 @@ class PDP(PDPInterface):
         @return: XACML response instance
         @rtype: ndg.xacml.core.context.response.Response
         """
-        response = self.policy.evaluate(request)
+        response = self.policy.evaluateResponse(request)
         
         return response
 

@@ -30,7 +30,7 @@ class AttributeValueReader(ExpressionReader):
     TYPE = AttributeValue
     FACTORY = AttributeValueClassFactory()
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse *AttributeValue type element - override this method instead of
         _parseExtension since AttributeValue class is virtual.  A sub-type can
         be instantiated only once the data type attribute is parsed

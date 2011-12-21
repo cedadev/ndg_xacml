@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:cmip5-policy-opendap-hadgem2-a"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:esg="http://www.earthsystemgrid.org/"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Description>
+    	Policy for OPeNDAP access: HadGEM2-A
+    </Description>
+
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <Rule RuleId="cmip5-policy-opendap-hadgem2-a RF Deny" Effect="Deny">
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.6hr\.atmos\.6hrPlev\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.atmos\.day\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.6hr\.atmos\.6hrPlev\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.land\.day\.r1i1p1\.[^.?/]*\.20110513\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r1i1p1\.[^.?/]*\.20110513\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip4K\.day\.land\.day\.r1i1p1\.[^.?/]*\.20110524\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip4K\.mon\.land\.Lmon\.r1i1p1\.[^.?/]*\.20110524\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip4xCO2\.day\.land\.day\.r1i1p1\.[^.?/]*\.20110523\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip4xCO2\.mon\.land\.Lmon\.r1i1p1\.[^.?/]*\.20110523\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amipFuture\.mon\.land\.Lmon\.r1i1p1\.[^.?/]*\.20110523\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.6hr\.atmos\.6hrPlev\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.6hr\.atmos\.6hrPlev\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.atmos\.day\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.6hr\.atmos\.6hrPlev\.r2i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.atmos\.day\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.atmos\.3hr\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.atmos\.day\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.day\.atmos\.day\.r2i3p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.atmos\.3hr\.r2i3p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r2i3p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.atmos\.3hr\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.atmos\.3hr\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.atmos\.3hr\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.3hr\.land\.3hr\.r1i1p1\.[^.?/]*\.20110802\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.atmos\.Amon\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.atmos\.Amon\.r2i3p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.atmos\.Amon\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r1i2p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.atmos\.Amon\.r4i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r2i3p1\.[^.?/]*\.20110629\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.atmos\.Amon\.r3i2p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amip\.mon\.land\.Lmon\.r5i3p1\.[^.?/]*\.20110630\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadGEM2-A\.amipFuture\.day\.land\.day\.r1i1p1\.[^.?/]*\.20110523\.aggregation</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
+</Policy>

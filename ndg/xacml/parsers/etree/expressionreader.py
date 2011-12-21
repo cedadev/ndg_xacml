@@ -25,7 +25,7 @@ class ExpressionReader(ETreeAbstractReader):
     '''
     TYPE = Expression
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse Expression object
         
         @param obj: input object to parse

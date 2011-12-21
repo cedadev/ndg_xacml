@@ -22,7 +22,7 @@ class TargetChildReader(ETreeAbstractReader):
     @type TYPE: type
     '''
 
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse target child element object
         
         @param obj: input object to parse
@@ -48,11 +48,11 @@ class TargetChildReader(ETreeAbstractReader):
             if localName == xacmlType.MATCH_TYPE.ELEMENT_LOCAL_NAME:
                 # Get reader for the match type
                 matchReader = ReaderFactory.getReader(xacmlType.MATCH_TYPE)
-                targetChild.matches.append(matchReader.parse(childElem))
+                targetChild.matches.append(matchReader.parse(childElem, common))
             
             else:
                 raise XMLParseError("XACML %r child element name %r not "
-                                    "recognised" % (xacmlType.ELEMENT_LOCAL_NAME, 
+                                    "recognised" % (xacmlType.ELEMENT_LOCAL_NAME,
                                                     localName))
                        
         return targetChild

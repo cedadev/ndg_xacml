@@ -35,14 +35,14 @@ class AbstractReader(object):
         return NotImplemented
         
     @abstractmethod
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Abstract Parse XACML method
         @raise NotImplementedError: 
         """
         raise NotImplementedError()
     
     @classmethod
-    def parse(cls, obj):
+    def parse(cls, obj, common):
         """Parse from input object and return new XACML object
         @param obj: input source - file name, stream object or other
         @type obj: string, stream or other
@@ -50,7 +50,7 @@ class AbstractReader(object):
         @rtype: XacmlCoreBase sub type
         """
         reader = cls()
-        return reader(obj)
+        return reader(obj, common)
     
     
 class AbstractReaderFactory(object):

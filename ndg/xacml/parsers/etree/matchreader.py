@@ -42,7 +42,7 @@ class MatchReaderBase(ETreeAbstractReader):
             
         super(MatchReaderBase, self).__init__()
         
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse *Match object (where * = Subject, Resource, Environment or
         Action
         
@@ -86,7 +86,8 @@ class MatchReaderBase(ETreeAbstractReader):
             
             if localName == xacmlType.ATTRIBUTE_VALUE_ELEMENT_LOCAL_NAME:
                 AttributeValueReader = ReaderFactory.getReader(AttributeValue)
-                match.attributeValue = AttributeValueReader.parse(childElem)
+                match.attributeValue = AttributeValueReader.parse(childElem,
+                                                                  common)
                 
             elif localName == attributeDesignatorType.ELEMENT_LOCAL_NAME:
                 if match.attributeSelector is not None:
@@ -97,7 +98,7 @@ class MatchReaderBase(ETreeAbstractReader):
                              AttributeSelector.ELEMENT_LOCAL_NAME))
                     
                 match.attributeDesignator = attributeDesignatorReaderType.parse(
-                                                                    childElem)
+                                                            childElem, common)
                         
             elif localName == AttributeSelector.ELEMENT_LOCAL_NAME:
                 if match.attributeDesignator is not None:
@@ -111,7 +112,7 @@ class MatchReaderBase(ETreeAbstractReader):
                                                             AttributeSelector)
                 
                 match.attributeSelector = AttributeSelectorReader.parse(
-                                                                    childElem)
+                                                            childElem, common)
             else:
                 raise XMLParseError("XACML %r child element name %r not "
                                     "recognised" % 

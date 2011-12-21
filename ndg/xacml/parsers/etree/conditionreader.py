@@ -26,7 +26,7 @@ class ConditionReader(ETreeAbstractReader):
     '''
     TYPE = Condition
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse condition object
         
         @param obj: input object to parse
@@ -54,7 +54,7 @@ class ConditionReader(ETreeAbstractReader):
         
         subElemlocalName = QName.getLocalPart(elem[0].tag)
         if subElemlocalName == xacmlType.APPLY_ELEMENT_LOCAL_NAME:
-            condition.expression = ApplyReader.parse(elem[0])
+            condition.expression = ApplyReader.parse(elem[0], common)
         else:
             raise XMLParseError('Expecting %r Condition sub-element not '
                                 'recognised' %

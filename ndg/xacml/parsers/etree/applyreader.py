@@ -47,7 +47,7 @@ class ApplyReader(ETreeAbstractReader):
     FUNCTION_ELEMENT_LOCAL_NAME = 'Function'
     VARIABLE_REFERENCE_ELEMENT_LOCAL_NAME = 'VariableReference'
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse Apply type object
 
         @param obj: input object to parse
@@ -82,51 +82,58 @@ class ApplyReader(ETreeAbstractReader):
         for subElem in elem:
             localName = QName.getLocalPart(subElem.tag)
             if localName == xacmlType.ELEMENT_LOCAL_NAME:
-                applyObj.expressions.append(ApplyReader.parse(subElem))
+                applyObj.expressions.append(ApplyReader.parse(subElem, common))
              
             elif localName == AttributeValue.ELEMENT_LOCAL_NAME:
                 AttributeValueReader = ReaderFactory.getReader(AttributeValue) 
-                applyObj.expressions.append(AttributeValueReader.parse(subElem))
+                applyObj.expressions.append(AttributeValueReader.parse(subElem,
+                                                                       common))
                  
             elif localName == SubjectAttributeDesignator.ELEMENT_LOCAL_NAME:
                 SubjectAttributeDesignatorReader = ReaderFactory.getReader(
                                                 SubjectAttributeDesignator)
                 applyObj.expressions.append(
-                                SubjectAttributeDesignatorReader.parse(subElem))
+                                SubjectAttributeDesignatorReader.parse(subElem,
+                                                                       common))
                 
             elif localName == EnvironmentAttributeDesignator.ELEMENT_LOCAL_NAME:
                 EnvironmentAttributeDesignatorReader = ReaderFactory.getReader(
                                                 EnvironmentAttributeDesignator)
                 applyObj.expressions.append(
-                            EnvironmentAttributeDesignatorReader.parse(subElem))
+                            EnvironmentAttributeDesignatorReader.parse(subElem,
+                                                                       common))
                 
             elif localName == ActionAttributeDesignator.ELEMENT_LOCAL_NAME:
                 ActionAttributeDesignatorReader = ReaderFactory.getReader(
                                                 ActionAttributeDesignator)
                 applyObj.expressions.append(
-                                ActionAttributeDesignatorReader.parse(subElem))
+                                ActionAttributeDesignatorReader.parse(subElem,
+                                                                      common))
                 
             elif localName == EnvironmentAttributeDesignator.ELEMENT_LOCAL_NAME:
                 EnvironmentAttributeDesignatorReader = ReaderFactory.getReader(
                                                 EnvironmentAttributeDesignator)
                 applyObj.expressions.append(
-                            EnvironmentAttributeDesignatorReader.parse(subElem))
+                            EnvironmentAttributeDesignatorReader.parse(subElem,
+                                                                       common))
                 
             elif localName == AttributeSelector.ELEMENT_LOCAL_NAME:
                 AttributeSelectorReader = ReaderFactory.getReader(
                                                             AttributeSelector)
                 applyObj.expressions.append(
-                                        AttributeSelectorReader.parse(subElem))
+                                        AttributeSelectorReader.parse(subElem,
+                                                                      common))
             
             elif localName == Condition.ELEMENT_LOCAL_NAME:
                 ConditionReader = ReaderFactory.getReader(Condition)
-                applyObj.expressions.append(ConditionReader.parse(subElem))
+                applyObj.expressions.append(ConditionReader.parse(subElem,
+                                                                  common))
                 
             elif localName == self.__class__.FUNCTION_ELEMENT_LOCAL_NAME:
                 raise NotImplementedError('%r Apply sub-element not '
                                           'implemented', localName)
             
-            elif (localName == VariableReference.ELEMENT_LOCAL_NAME):                                
+            elif (localName == VariableReference.ELEMENT_LOCAL_NAME):
                 raise NotImplementedError('%r Apply sub-element not '
                                           'implemented', localName)
             else:

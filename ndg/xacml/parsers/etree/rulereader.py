@@ -26,7 +26,7 @@ class RuleReader(ETreeAbstractReader):
     '''
     TYPE = Rule
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse rule object
         
         @param obj: input object to parse
@@ -71,11 +71,11 @@ class RuleReader(ETreeAbstractReader):
                     
             elif localName == Condition.ELEMENT_LOCAL_NAME:
                 ConditionReader = ReaderFactory.getReader(Condition)
-                rule.condition = ConditionReader.parse(childElem)
+                rule.condition = ConditionReader.parse(childElem, common)
                                    
             elif localName == Target.ELEMENT_LOCAL_NAME:
                 TargetReader = ReaderFactory.getReader(Target)
-                rule.target = TargetReader.parse(childElem)
+                rule.target = TargetReader.parse(childElem, common)
             
             else:
                 raise XMLParseError("XACML Rule child element name %r not "

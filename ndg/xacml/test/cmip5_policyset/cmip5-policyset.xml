@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicySetId="urn:ndg:security:1.0:authz:test:cmip5-policyset"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+    <Description>
+        Policy for ESG THREDDS server
+    </Description>
+
+    <!--
+        Overall scope of policy set - restrict to relevant hosts and protocols.
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^gsiftp://cmip-bdm1\.badc\.rl\.ac\.uk</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy1:policy-public"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>
+            Policy for public resources - permits all access.
+        </Description>
+
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^[^?]*(\.html|\.xml|\.css|\.gif|/)(\?|$)</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+
+        <Rule RuleId="policy-1:PermitAll" Effect="Permit"/>
+    </Policy>
+
+    <PolicySetIdReference>urn:ndg:security:1.0:authz:test:cmip5-policyset-opendap</PolicySetIdReference>
+
+    <Policy PolicyId="urn:ndg:security:1.0:authz:test:policy1:policy-default-deny"
+        RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+        <Description>
+            Default policy for remaining URLs - denies all access.
+        </Description>
+        <!-- Deny everything by default -->
+        <Rule RuleId="policy-default-deny:DenyAllRule" Effect="Deny"/>
+    </Policy>
+</PolicySet>
