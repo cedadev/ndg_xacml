@@ -23,11 +23,13 @@ class PolicyDefaultsReader(ETreeAbstractReader):
     '''
     TYPE = PolicyDefaults
     
-    def __call__(self, obj):
+    def __call__(self, obj, common):
         """Parse Policy defaults object
         
         @param obj: input object to parse
         @type obj: ElementTree Element, or stream object
+        @param common: parsing common data
+        @type common: from ndg.xacml.parsers.common.Common
         @return: new XACML expression instance
         @rtype: ndg.xacml.core.policydefaults.PolicyDefaults derived type 
         @raise XMLParseError: error reading element               

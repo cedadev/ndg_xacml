@@ -43,6 +43,20 @@ class PolicyReader(ETreeAbstractReader):
 
         return self.processElement(elem, common)
 
+    @classmethod
+    def parse(cls, obj, common=None):
+        """Parse from input object and return new XACML object
+        As a special case, allow the common data to be None. This is because for
+        parsing a policy rather than a policy set, no common data is needed.
+        @param obj: input source - file name, stream object or other
+        @type obj: string, stream or other
+        @param common: parsing common data
+        @type common: from ndg.xacml.parsers.common.Common
+        @return: new XACML object
+        @rtype: XacmlCoreBase sub type
+        """
+        return super(ETreeAbstractReader, cls).parse(obj, common)
+
     def processElement(self, elem, common):
         """Parse policy object
         
@@ -131,6 +145,9 @@ class PolicyReader(ETreeAbstractReader):
                                     "recognised" % localName)
 
         # Record reference in case of references to this policy.
-        common.policyFinder.addPolicyReference(policy)
+        # Allow for there not being a policy finder since this is not needed if
+        # if the root is a policy rather than a policy set.
+        if common is not None and hasattr(common, 'policyFinder'):
+            common.policyFinder.addPolicyReference(policy)
 
         return policy
