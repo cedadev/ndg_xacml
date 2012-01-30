@@ -10,7 +10,7 @@ __license__ = "BSD - see LICENSE file in top-level directory"
 __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
 from ndg.xacml.core.context import RequestChildBase
-
+import ndg.xacml.parsers.etree as etree
 
 class Resource(RequestChildBase):
     """XACML Context Resource type
@@ -50,3 +50,26 @@ class Resource(RequestChildBase):
 
     resourceContent = property(_get_resourceContent, _set_resourceContent, None, 
                                "Resource content")
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(Resource, self).__getstate__()
+        for attrName in Resource.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Resource" + attrName
+            value = getattr(self, attrName)
+            _dict[attrName] = etree.serialiseIfElementTree(value)
+        return _dict
+
+    def __setstate__(self, state):
+        for k, v in state.iteritems():
+            if isinstance(v, etree.SerialisedElementTree):
+                setattr(self, k, etree.deserialiseIfElementTree(v))
+            else:
+                setattr(self, k, v)

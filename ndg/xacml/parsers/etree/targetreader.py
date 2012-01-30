@@ -49,6 +49,10 @@ class TargetReader(ETreeAbstractReader):
         
         # Parse sub-elements
         for childElem in elem:
+            # Allow for non-element children such as comments.
+            if (not hasattr(childElem, 'tag') or
+                not isinstance(childElem.tag, basestring)):
+                continue
             localName = QName.getLocalPart(childElem.tag)
             
             if localName == xacmlType.SUBJECTS_ELEMENT_LOCAL_NAME:

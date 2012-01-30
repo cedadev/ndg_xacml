@@ -48,6 +48,8 @@ class XacmlCoreBase(object):
         """
         self.__xmlns = None
         self.__elem = None
+        self.__reader = None
+        self.__writer = None
         
         if not isinstance(self.__class__.ELEMENT_LOCAL_NAME, basestring):
             raise NotImplementedError('"ELEMENT_LOCAL_NAME" must be defined in '
@@ -99,6 +101,23 @@ class XacmlCoreBase(object):
         @type value: type (governed by reader/writer set for this XACML object)
         """
         self.__elem = value
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = {}
+        for attrName in XacmlCoreBase.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_XacmlCoreBase" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict
             
 
 class XacmlPolicyBase(XacmlCoreBase):

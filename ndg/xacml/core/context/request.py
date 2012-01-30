@@ -19,6 +19,7 @@ from ndg.xacml.core.context.resource import Resource
 from ndg.xacml.core.context.action import Action
 from ndg.xacml.core.context.environment import Environment
 from ndg.xacml.core.context.handlerinterface import CtxHandlerInterface
+from ndg.xacml.utils.xpath_selector import XPathSelectorInterface
 
 
 class Request(XacmlContextBase):
@@ -51,6 +52,7 @@ class Request(XacmlContextBase):
         '__action', 
         '__environment',
         '__ctxHandler',
+        '__attributeSelector',
     )
     ELEMENT_LOCAL_NAME = 'Request'
     
@@ -63,6 +65,7 @@ class Request(XacmlContextBase):
         self.__environment = None
         
         self.__ctxHandler = None
+        self.__attributeSelector = None
                     
     @property
     def subjects(self):
@@ -143,3 +146,43 @@ class Request(XacmlContextBase):
                             '%r' % (CtxHandlerInterface, type(value)))
             
         self.__ctxHandler = value
+
+    @property
+    def attributeSelector(self):
+        """Get attribute selector used to make XPath selections on request
+        @return: attribute selector
+        @rtype: None / ndg.xacml.utils.xpath_selector.XpathSelectorInterface
+        derived type
+        """
+        return self.__attributeSelector
+
+    @attributeSelector.setter
+    def attributeSelector(self, value):
+        """Set attribute selector used to make XPath selections on request
+        @param value: attribute selector
+        @type value: ndg.xacml.utils.xpath_selector.XpathSelectorInterface
+        derived type
+        """
+        if not isinstance(value, XPathSelectorInterface):
+            raise TypeError('Expecting %r type for "attributeSelector" '
+                            'attribute; got %r' %
+                            (XPathSelectorInterface, type(value)))
+            
+        self.__attributeSelector = value
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(Request, self).__getstate__()
+        for attrName in Request.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Request" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict

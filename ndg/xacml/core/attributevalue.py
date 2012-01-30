@@ -195,6 +195,23 @@ class AttributeValue(Expression):
         """ 
         return self
 
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(AttributeValue, self).__getstate__()
+        for attrName in AttributeValue.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_AttributeValue" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict
+
 
 class AttributeValueClassMap(VettedDict):
     """Specialised dictionary to hold mappings of XML attribute type URIs to 

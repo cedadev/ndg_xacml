@@ -47,6 +47,7 @@ class Attribute(XacmlCoreBase):
     __slots__ = ('__attributeValues', '__dataType', '__attributeId', '__issuer')
     
     def __init__(self):
+        super(Attribute, self).__init__()
         self.__attributeValues = TypedList(AttributeValue)
         self.__dataType = None
         self.__attributeId = None
@@ -138,3 +139,20 @@ class Attribute(XacmlCoreBase):
                             'attribute; got %r' % (basestring, type(value)))
             
         self.__issuer = value
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: class instance attributes dictionary
+        @rtype: dict
+        '''
+        _dict = {}
+        for attrName in Attribute.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Attribute" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict

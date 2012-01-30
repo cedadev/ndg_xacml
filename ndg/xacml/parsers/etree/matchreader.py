@@ -82,6 +82,10 @@ class MatchReaderBase(ETreeAbstractReader):
      
         # Parse match elements
         for childElem in elem:
+            # Allow for non-element children such as comments.
+            if (not hasattr(childElem, 'tag') or
+                not isinstance(childElem.tag, basestring)):
+                continue
             localName = QName.getLocalPart(childElem.tag)
             
             if localName == xacmlType.ATTRIBUTE_VALUE_ELEMENT_LOCAL_NAME:

@@ -80,6 +80,10 @@ class ApplyReader(ETreeAbstractReader):
         # Allow for any of the defined Expression sub-types in the child 
         # elements
         for subElem in elem:
+            # Allow for non-element children such as comments.
+            if (not hasattr(subElem, 'tag') or
+                not isinstance(subElem.tag, basestring)):
+                continue
             localName = QName.getLocalPart(subElem.tag)
             if localName == xacmlType.ELEMENT_LOCAL_NAME:
                 applyObj.expressions.append(ApplyReader.parse(subElem, common))

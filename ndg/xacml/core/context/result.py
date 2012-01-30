@@ -242,6 +242,9 @@ class Status(XacmlContextBase):
 class Decision(object):
     """Define decision types for Response Result
     
+    @cvar ELEMENT_LOCAL_NAME: XML Local Name of StatusCode element 
+    @type ELEMENT_LOCAL_NAME: string
+    
     @cvar PERMIT_STR: permit decision string
     @type PERMIT_STR: string
     
@@ -272,6 +275,7 @@ class Decision(object):
     @ivar __value: decision value
     @type __value: string
     """
+    ELEMENT_LOCAL_NAME  = 'Decision'
     
     # "Permit" decision type string
     PERMIT_STR = "Permit"
@@ -638,3 +642,20 @@ class Result(XacmlContextBase):
                             'attribute; got %r' % (Obligation, type(value)))
             
         self.__obligations = value
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(Result, self).__getstate__()
+        for attrName in Result.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Result" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict

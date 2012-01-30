@@ -12,7 +12,8 @@ __revision__ = "$Id$"
 import logging
 log = logging.getLogger(__name__)
 
-from xml.etree import ElementTree
+from ndg.xacml import Config, importElementTree
+ElementTree = importElementTree()
 
 from ndg.xacml.core import XacmlPolicyBase
 from ndg.xacml.parsers import AbstractReader
@@ -35,12 +36,14 @@ class ETreeAbstractReader(AbstractReader):
             raise NotImplementedError('No "TYPE" class variable set to specify '
                                       'the XACML type to instantiate')
             
-        self.__namespace_map_backup = ElementTree._namespace_map.copy()
-        ElementTree._namespace_map[''] = XacmlPolicyBase.XACML_2_0_POLICY_NS
+        if not Config.use_lxml:
+            self.__namespace_map_backup = ElementTree._namespace_map.copy()
+            ElementTree._namespace_map[''] = XacmlPolicyBase.XACML_2_0_POLICY_NS
         
     def __del__(self):
         """Restore original global namespace map"""
-        ElementTree._namespace_map = self.__namespace_map_backup
+        if not Config.use_lxml:
+            ElementTree._namespace_map = self.__namespace_map_backup
     
     @staticmethod
     def _parse(obj):

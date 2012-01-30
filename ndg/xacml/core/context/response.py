@@ -42,4 +42,20 @@ class Response(XacmlContextBase):
         @rtype: ndg.xacml.utils.TypedList
         """
         return self.__results
-    
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(Response, self).__getstate__()
+        for attrName in Response.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Response" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict

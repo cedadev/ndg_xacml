@@ -11,8 +11,50 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
 import logging
 log = logging.getLogger(__name__)
+import re
 
-from xml.etree import ElementTree
+from ndg.xacml import Config, importElementTree
+ElementTree = importElementTree()
+
+class SerialisedElementTree(unicode):
+    """Marks a unicode string as being serialised ElementTree XML.
+    """
+    pass
+
+if Config.use_lxml:
+    def makeEtreeElement(tag, ns_prefix, ns_uri, attrib={}, **extra):
+        """Makes an ElementTree element handling namespaces in the way
+        appropriate for the ElementTree implementation in use.
+        """
+        elem = ElementTree.Element(tag, {ns_prefix: ns_uri}, attrib, **extra)
+        return elem
+
+    def serialiseIfElementTree(obj):
+        if ElementTree.iselement(obj):
+            return SerialisedElementTree(ElementTree.tostring(obj,
+                                                              encoding=unicode))
+        else:
+            return obj
+    
+    def deserialiseIfElementTree(obj):
+        if isinstance(obj, SerialisedElementTree):
+            return ElementTree.XML(obj)
+        else:
+            return obj
+else:
+    def makeEtreeElement(tag, ns_prefix, ns_uri, attrib={}, **extra):
+        """Makes an ElementTree element handling namespaces in the way
+         appropriate for the ElementTree implementation in use.
+        """
+        elem = ElementTree.Element(tag, attrib, **extra)
+        ElementTree._namespace_map[ns_uri] = ns_prefix
+        return elem
+
+    def serialiseIfElementTree(obj):
+        return obj
+
+    def deserialiseIfElementTree(obj):
+        return obj
 
 # Generic ElementTree Helper classes
 class QName(ElementTree.QName):

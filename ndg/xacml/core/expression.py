@@ -60,3 +60,20 @@ class Expression(XacmlCoreBase):
         @rtype: AttributeValue/NoneType
         """
         raise NotImplementedError()
+
+    def __getstate__(self):
+        '''Enable pickling
+        
+        @return: object's attribute dictionary
+        @rtype: dict
+        '''
+        _dict = super(Expression, self).__getstate__()
+        for attrName in Expression.__slots__:
+            # Ugly hack to allow for derived classes setting private member
+            # variables
+            if attrName.startswith('__'):
+                attrName = "_Expression" + attrName
+                
+            _dict[attrName] = getattr(self, attrName)
+            
+        return _dict

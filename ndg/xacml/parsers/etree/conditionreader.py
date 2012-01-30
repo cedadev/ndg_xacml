@@ -45,16 +45,25 @@ class ConditionReader(ETreeAbstractReader):
             raise XMLParseError("No \"%s\" element found" % 
                                 xacmlType.ELEMENT_LOCAL_NAME)
             
+        # Parse sub-elements
+        nSubElem = 0
+        for childElem in elem:
+            # Allow for non-element children such as comments.
+            if (not hasattr(childElem, 'tag') or
+                not isinstance(childElem.tag, basestring)):
+                continue
+            nSubElem += 1
+            subElem = childElem
+
         # Parse expression sub-element
-        nSubElem = len(elem)
         if nSubElem != 1:
             raise XMLParseError('XACML 2.0 policy schema expects only one '
                                 'expression sub-element in the Condition '
                                 'element; policy file has %d' % nSubElem)
         
-        subElemlocalName = QName.getLocalPart(elem[0].tag)
+        subElemlocalName = QName.getLocalPart(subElem.tag)
         if subElemlocalName == xacmlType.APPLY_ELEMENT_LOCAL_NAME:
-            condition.expression = ApplyReader.parse(elem[0], common)
+            condition.expression = ApplyReader.parse(subElem, common)
         else:
             raise XMLParseError('Expecting %r Condition sub-element not '
                                 'recognised' %

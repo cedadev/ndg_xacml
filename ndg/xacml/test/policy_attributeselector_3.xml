@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:policy"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>
+        Example for NDG Security unit tests: allow access for resource URIs
+        defined in the rules.  All other URIs are blocked from access
+
+        See ndg.security.test.unit.wsgi.authz.test_authz to see the various
+        rules tested out
+    </Description>
+
+    <!--
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!-- Deny everything by default -->
+    <Rule RuleId="urn:ndg:security1.0:authz:test:DenyAllRule" Effect="Deny"/>
+
+    <Rule RuleId="urn:ndg:security:attribute-selector" Effect="Permit">
+        <!--
+            Rule containing a Resource AttributeSelector.
+        -->
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">400</AttributeValue>
+                        <AttributeSelector
+                            RequestContextPath="//{urn:oasis:names:tc:xacml:2.0:context:schema:os}Resource/{urn:oasis:names:tc:xacml:2.0:context:schema:os}ResourceContent/{http://www.opengis.net/wps/1.0.0}Execute/{http://www.opengis.net/wps/1.0.0}DataInputs/{http://www.opengis.net/wps/1.0.0}Input/{http://www.opengis.net/wps/1.0.0}Data/{http://www.opengis.net/wps/1.0.0}LiteralData"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"
+                            MustBePresent="true"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-at-least-one-member-of">
+                <AttributeSelector
+                    RequestContextPath="//{urn:oasis:names:tc:xacml:2.0:context:schema:os}Subject/{urn:oasis:names:tc:xacml:2.0:context:schema:os}Attribute/{urn:oasis:names:tc:xacml:2.0:context:schema:os}AttributeValue"
+                    DataType="http://www.w3.org/2001/XMLSchema#anyURI"
+                    MustBePresent="true"/>
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-bag">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">https://my.name.somewhere.ac.uk</AttributeValue>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

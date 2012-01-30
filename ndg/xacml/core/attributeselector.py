@@ -12,7 +12,12 @@ __revision__ = "$Id$"
 import logging
 log = logging.getLogger(__name__)
 
+from ndg.xacml.core.attributevalue import AttributeValueClassFactory
+from ndg.xacml.core.context.exceptions import MissingAttributeError
+from ndg.xacml.core.context.request import Request
 from ndg.xacml.core.expression import Expression
+from ndg.xacml.parsers import XMLParseError
+from ndg.xacml.utils import TypedList
 
 
 class AttributeSelector(Expression):
@@ -24,12 +29,19 @@ class AttributeSelector(Expression):
     @cvar MUST_BE_PRESENT_ATTRIB_NAME: must be present XML attribute name
     @type MUST_BE_PRESENT_ATTRIB_NAME: string
 
+    @ivar __attributeValueFactory: When evaluating matches, use an attribute 
+    value class factory to create attribute values for match bag of the correct 
+    DataType to respect type based rule functions
+    @type __attributeValueFactory: ndg.xacml.core.attributevalue.AttributeValueClassFactory
     '''
     ELEMENT_LOCAL_NAME = 'AttributeSelector'
     MUST_BE_PRESENT_ATTRIB_NAME = 'MustBePresent'
     REQUEST_CONTEXT_PATH_ATTRIB_NAME = 'RequestContextPath'
     
-    __slots__ = ('__mustBePresent', '__requestContextPath')
+    __slots__ = ('__mustBePresent',
+                 '__requestContextPath',
+                 '__attributeValueFactory'
+                 )
 
     def __init__(self):
         '''XACML Attribute Selector type 
@@ -37,6 +49,11 @@ class AttributeSelector(Expression):
         super(AttributeSelector, self).__init__()
         self.__mustBePresent = None
         self.__requestContextPath = None
+
+        # When evaluating matches, use an attribute value class factory to 
+        # create attribute values for match bag of the correct DataType to 
+        # respect type based rule functions
+        self.__attributeValueFactory = AttributeValueClassFactory()
         
     @property
     def requestContextPath(self):
@@ -80,10 +97,52 @@ class AttributeSelector(Expression):
             
         self.__mustBePresent = value 
 
-    def evaluate(self, context):
-        """Placeholder to override abstract method and enable this class to be
-        instantiated.  However, AttributeSelectors are not fully implemented so
-        this method raises a not implemented error.
+    @property
+    def attributeValueFactory(self):
+        """Get Attribute Value factory function
+        
+        @return: attribute value factory instance
+        @rtype: ndg.xacml.core.attributevalue.AttributeValueClassFactory
         """
-        raise NotImplementedError('PDP evaluation for AttributeSelectors is '
-                                  'not currently implemented')
+        return self.__attributeValueFactory 
+
+    def evaluate(self, context):
+        """Evaluates an XPath expression with the context node being the request
+        using the XPath selector set in the context.
+        @type context: ndg.xacml.core.context.request.Request
+        @param context: request context
+        @rtype: bag of dataType
+        @return: bag of matched values
+        """
+        if not isinstance(context, Request):
+            raise TypeError('Expecting %r type for context input; got %r' %
+                            (Request, type(context)))
+        
+        log.debug("In AttributeSelector for path %r", self.requestContextPath)
+
+        if not context.attributeSelector:
+            raise ValueError('Attribute selector not set in Request object.')
+
+        # Create the return value bag.
+        dataType = self.dataType
+        attributeValueClass = self.attributeValueFactory(dataType)
+        if attributeValueClass is None:
+            raise XMLParseError("No Attribute Value class available for "
+                                "type %r" % dataType)
+        attributeValueBag = TypedList(attributeValueClass)
+
+        # Get the matched values and add to the bag as attributes of the
+        # required type.
+        values = context.attributeSelector.selectText(self.requestContextPath)
+        for value in values:
+            attributeValue = attributeValueClass()
+            attributeValue.dataType = dataType
+            attributeValue.value = value
+            attributeValueBag.append(attributeValue)
+
+        if len(attributeValueBag) == 0 and self.mustBePresent:
+            raise MissingAttributeError('"MustBePresent" is set for '
+                                        'AttrubuteSelector for path %r' %
+                                        self.requestContextPath)
+
+        return attributeValueBag
