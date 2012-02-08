@@ -24,6 +24,8 @@ from ndg.xacml.test import XACML_ATTRIBUTESELECTOR1_FILEPATH
 from ndg.xacml.test import XACML_ATTRIBUTESELECTOR2_FILEPATH
 from ndg.xacml.test import XACML_ATTRIBUTESELECTOR3_FILEPATH
 from ndg.xacml.test import XACML_ATTRIBUTESELECTOR4_FILEPATH
+from ndg.xacml.test import XACML_ATTRIBUTESELECTOR5_FILEPATH
+from ndg.xacml.test import XACML_ATTRIBUTESELECTOR6_FILEPATH
 from ndg.xacml.test.context import XacmlContextBaseTestCase
 from ndg.xacml.utils.etree import prettyPrint
 from ndg.xacml.utils.xpath_selector import EtreeXPathSelector
@@ -265,6 +267,46 @@ class Test(XacmlContextBaseTestCase):
             if Config.use_lxml:
                 self.failIf(result.decision != Decision.PERMIT,
                             "Expecting permit decision")
+            else:
+                self.failIf(result.decision != Decision.INDETERMINATE,
+                            "Expecting indeterminate decision")
+
+    def test09SelectAttributePermit(self):
+        self.pdp = PDP.fromPolicySource(XACML_ATTRIBUTESELECTOR5_FILEPATH,
+                                        ReaderFactory)
+        resourceContent = self._make_resource_content_element(
+                                    self.__class__.RESOURCE_CONTENT_EXECUTE)
+        request = self._createRequestCtx(
+                                    self.__class__.PUBLIC_RESOURCE_ID,
+                                    resourceContent=resourceContent)
+        request.elem = RequestElementTree.toXML(request)
+        request.attributeSelector = EtreeXPathSelector(request.elem)
+        response = self.pdp.evaluate(request)
+        self.failIf(response is None, "Null response")
+        for result in response.results:
+            if Config.use_lxml:
+                self.failIf(result.decision != Decision.PERMIT,
+                            "Expecting permit decision")
+            else:
+                self.failIf(result.decision != Decision.INDETERMINATE,
+                            "Expecting indeterminate decision")
+
+    def test10SelectAttributeDeny(self):
+        self.pdp = PDP.fromPolicySource(XACML_ATTRIBUTESELECTOR6_FILEPATH,
+                                        ReaderFactory)
+        resourceContent = self._make_resource_content_element(
+                                    self.__class__.RESOURCE_CONTENT_EXECUTE)
+        request = self._createRequestCtx(
+                                    self.__class__.PUBLIC_RESOURCE_ID,
+                                    resourceContent=resourceContent)
+        request.elem = RequestElementTree.toXML(request)
+        request.attributeSelector = EtreeXPathSelector(request.elem)
+        response = self.pdp.evaluate(request)
+        self.failIf(response is None, "Null response")
+        for result in response.results:
+            if Config.use_lxml:
+                self.failIf(result.decision != Decision.DENY,
+                            "Expecting deny decision")
             else:
                 self.failIf(result.decision != Decision.INDETERMINATE,
                             "Expecting indeterminate decision")

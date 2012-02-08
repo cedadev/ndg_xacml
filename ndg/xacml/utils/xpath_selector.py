@@ -55,7 +55,7 @@ class EtreeXPathSelector(XPathSelectorInterface):
             elements.
             @type path: str
             @param path: XPath path expression
-            @rtype: list of basestr
+            @rtype: list of basestring
             @return: text from selected elements
             """
             # ElementTree XPath doesn't support absolute paths. Make it relative
@@ -66,14 +66,22 @@ class EtreeXPathSelector(XPathSelectorInterface):
                 relPath = path
             find = ElementTree.ETXPath(relPath)
             elems = find(self.contextElem)
-            return [e.text for e in elems]
+            returnList = []
+            for m in elems:
+                # Allow for XPath expression selecting element text or attribute
+                # values.
+                if hasattr(m, 'text'):
+                    returnList.append(m.text)
+                else:
+                    returnList.append(m.__str__())
+            return returnList
     else:
         def selectText(self, path):
             """Performs an XPath search and returns text content of matched
             elements.
             @type path: str
             @param path: XPath path expression
-            @rtype: list of basestr
+            @rtype: list of basestring
             @return: text from selected elements
             """
             # ElementTree XPath doesn't support absolute paths. Make it relative

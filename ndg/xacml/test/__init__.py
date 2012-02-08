@@ -40,6 +40,12 @@ XACML_ATTRIBUTESELECTOR3_FILEPATH = path.join(THIS_DIR,
 XACML_ATTRIBUTESELECTOR4_FILENAME = 'policy_attributeselector_4.xml'
 XACML_ATTRIBUTESELECTOR4_FILEPATH = path.join(THIS_DIR,
                                              XACML_ATTRIBUTESELECTOR4_FILENAME)
+XACML_ATTRIBUTESELECTOR5_FILENAME = 'policy_attributeselector_5.xml'
+XACML_ATTRIBUTESELECTOR5_FILEPATH = path.join(THIS_DIR,
+                                             XACML_ATTRIBUTESELECTOR5_FILENAME)
+XACML_ATTRIBUTESELECTOR6_FILENAME = 'policy_attributeselector_6.xml'
+XACML_ATTRIBUTESELECTOR6_FILEPATH = path.join(THIS_DIR,
+                                             XACML_ATTRIBUTESELECTOR6_FILENAME)
 XACML_FIRSTAPPLICABLE_FILENAME = "firstapplicable.xml"
 XACML_FIRSTAPPLICABLE_FILEPATH = path.join(THIS_DIR,
                                            XACML_FIRSTAPPLICABLE_FILENAME)
