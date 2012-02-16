@@ -10,7 +10,6 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = '$Id$'
 import re
 
-from ndg.xacml.core.context.exceptions import XacmlContextTypeError
 from ndg.xacml.core.attributevalue import AttributeValueClassFactory
 from ndg.xacml.core.functions import (AbstractFunction, 
                                       FunctionClassFactoryInterface)
