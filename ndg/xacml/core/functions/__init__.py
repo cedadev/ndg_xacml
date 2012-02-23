@@ -55,6 +55,7 @@ class AbstractFunction(object):
         @return: derived type should return True for match, False otherwise
         @rtype: bool (derived type), NoneType for THIS implementation
         """
+    
         
 class XacmlFunctionNames(object):
     """XACML standard match function names
@@ -312,6 +313,11 @@ def unsupportedFunctionErrorFactory(identifier, msg=None):
             
         raise UnsupportedFunctionError(msg)
     
+
+class OverwritingStdFunctionError(XacmlError):
+    """Attempting to overwrite a standard function namespace with a custom one
+    (probably from load_custom_function method)"""
+    
     
 class FunctionClassFactoryInterface(object):
     """Interface class for function module class factory class
@@ -561,6 +567,7 @@ class FunctionMap(VettedDict):
         # class factory which creates the various 
         # urn:oasis:names:tc:xacml:1.0:function:<type>-equal function classes
         self.__classFactoryMap = {}
+        self.__custom_class_factory_map = {}
         
     @staticmethod
     def keyFilter(key):
@@ -667,7 +674,39 @@ class FunctionMap(VettedDict):
                 
             self[functionNs] = function
             self.__classFactoryMap[functionNs] = functionFactory
-                       
+    
+    def load_custom_function(self, 
+                             function_ns, 
+                             function_factory=None,
+                             function_factory_path=None):
+        """Add a user defined function to the list of functions supported"""
+        
+        if function_ns in XacmlFunctionNames.FUNCTION_NAMES:
+            raise OverwritingStdFunctionError("Attempting to overwrite the "
+                                              "standard function namespace %r"
+                                              "with a new custom function" %
+                                              function_ns)
+        if function_factory is None:
+            if not isinstance(function_factory_path, basestring):
+                raise TypeError('Expecting "function_factory_path" keyword '
+                                'set to string function factory path; got %r' %
+                                function_factory_path)
+            try:
+                function_factory = callModuleObject(function_factory_path)
+                          
+            except (ImportError, AttributeError), e:
+                log.error("Error importing function factory class %r for custom "
+                          "function identifier %r: %s", function_factory_path, 
+                          function_ns, str(e))
+                raise
+        
+        function = function_factory(function_ns)
+        if function is None:
+            raise unsupportedFunctionErrorFactory(function_ns)
+        
+        self[function_ns] = function
+        self.__custom_class_factory_map[function_ns] = function_factory
+         
     def __getitem__(self, key):
         """Override base class implementation to load and cache function classes
         if they don't otherwise exist

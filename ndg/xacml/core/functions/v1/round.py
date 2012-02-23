@@ -22,7 +22,7 @@ class Round(AbstractFunction):
     FUNCTION_NS = AbstractFunction.V1_0_FUNCTION_NS + 'round'
     
     def evaluate(self, num):
-        """Check a bag has one element only and return it
+        """Execute mathematical round up of the input number
         
         @param num: number to round up
         @type num: int / long / float

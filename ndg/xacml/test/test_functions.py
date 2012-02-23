@@ -11,14 +11,39 @@ __license__ = "BSD - see LICENSE file in top-level directory"
 __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
 import unittest
-from os import path
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-from ndg.xacml.core.functions import FunctionMap
+from ndg.xacml.core.functions import FunctionMap, AbstractFunction
 from ndg.xacml.core.functions.v2.regexp_match import RegexpMatchBase
+from ndg.xacml.core.context.exceptions import XacmlContextTypeError
 
 
+def custom_function_factory(function_ns):
+    class CustomFunctionAbstractFunction(AbstractFunction):
+        FUNCTION_NS = 'urn:ndg:xacml:test:integer-square'
+        def evaluate(self, num):
+            """square an integer
+            
+            @param num: number to square
+            @type num: int
+            @rtype: int
+            @raise TypeError: incorrect type for input
+            """
+            if not isinstance(num, int):
+                raise XacmlContextTypeError('%r function expecting "int" type; '
+                                            'got %r' % 
+                                            (self.__class__.FUNCTION_NS, 
+                                             type(num)))
+            
+            return num * num
+       
+    if function_ns == CustomFunctionAbstractFunction.FUNCTION_NS:
+        return CustomFunctionAbstractFunction 
+    else:
+        return None 
+            
+            
 class FunctionTestCase(unittest.TestCase):
     """Test XACML functions implementation
     
@@ -33,6 +58,14 @@ class FunctionTestCase(unittest.TestCase):
             
         self.assert_(issubclass(funcMap.get(anyUriMatchNs), RegexpMatchBase))
 
+    def test01_add_custom_function(self):
+        func_map = FunctionMap()
+        func_map.loadAllCore()
+        func_map.load_custom_function('urn:ndg:xacml:test:integer-square',
+                                  custom_function_factory)
+        
+        self.assertIn('urn:ndg:xacml:test:integer-square', func_map, 
+                      'custom function not added into map')
         
 if __name__ == "__main__":
     unittest.main()

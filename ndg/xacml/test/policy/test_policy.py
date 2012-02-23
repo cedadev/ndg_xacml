@@ -32,6 +32,7 @@ from ndg.xacml.test import (XACML_NDGTEST1_FILEPATH, THIS_DIR,
                                
     
 class XACMLPolicyTestCase(unittest.TestCase):
+    """Unit tests for NDG XACML Policy class"""
     XACML_TEST1_FILENAME = "rule1.xml"
     XACML_TEST1_FILEPATH = path.join(THIS_DIR, XACML_TEST1_FILENAME)
     XACML_TEST2_FILENAME = "rule2.xml"
