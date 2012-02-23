@@ -202,4 +202,3 @@ class Apply(Expression):
         
         # Pass the result back to the parent <Apply> element
         return result
-          
