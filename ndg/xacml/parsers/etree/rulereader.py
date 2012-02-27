@@ -13,7 +13,7 @@ from ndg.xacml.core.rule import Rule, Effect
 from ndg.xacml.core.condition import Condition
 from ndg.xacml.core.target import Target
 from ndg.xacml.parsers import XMLParseError
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 from ndg.xacml.parsers.etree.reader import ETreeAbstractReader
 from ndg.xacml.parsers.etree.factory import ReaderFactory
 
@@ -62,11 +62,7 @@ class RuleReader(ETreeAbstractReader):
         rule.id, rule.effect.value = attributeValues
             
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             
             if localName == xacmlType.DESCRIPTION_LOCAL_NAME:

@@ -28,7 +28,7 @@ from ndg.xacml.core.context.result import Decision, Result
 from ndg.xacml.core.context.subject import Subject
 from ndg.xacml.parsers import XMLParseError
 import ndg.xacml.parsers.etree as etree
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 
 
 class RequestElementTree(Request):
@@ -96,11 +96,7 @@ class RequestElementTree(Request):
                                 cls.ELEMENT_LOCAL_NAME)
 
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
 
             if localName == Subject.ELEMENT_LOCAL_NAME:
@@ -172,11 +168,7 @@ class SubjectElementTree(Subject):
                                     Identifiers.SubjectCategory.ACCESS_SUBJECT)
 
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             if localName == Attribute.ELEMENT_LOCAL_NAME:
                 attribute = AttributeElementTree.fromXML(childElem)
@@ -240,11 +232,7 @@ class ResourceElementTree(Resource):
         resource = Resource()
 
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             if localName == Attribute.ELEMENT_LOCAL_NAME:
                 attribute = AttributeElementTree.fromXML(childElem)
@@ -300,11 +288,7 @@ class ActionElementTree(Action):
         action = Action()
 
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             if localName == Attribute.ELEMENT_LOCAL_NAME:
                 attribute = AttributeElementTree.fromXML(childElem)
@@ -357,11 +341,7 @@ class EnvironmentElementTree(Environment):
         environment = Environment()
 
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             if localName == Attribute.ELEMENT_LOCAL_NAME:
                 attribute = AttributeElementTree.fromXML(childElem)
@@ -440,11 +420,7 @@ class AttributeElementTree(Attribute):
             raise XMLParseError("XACML context Attribute element has no "
                                 "AttributeValues")
         AttributeValueClass = cls.attributeValueClassFactory(attribute.dataType)
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
 
             if localName == Attribute.ATTRIBUTE_VALUE_ELEMENT_LOCAL_NAME:
@@ -501,11 +477,7 @@ class ResponseElementTree(Response):
 
         response = Response()
 
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
 
             if localName == Result.ELEMENT_LOCAL_NAME:
@@ -574,11 +546,7 @@ class ResultElementTree(Result):
         if resourceId is not None:
             result.resourceId = resourceId
 
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
 
             if localName == Decision.ELEMENT_LOCAL_NAME:

@@ -56,6 +56,17 @@ else:
     def deserialiseIfElementTree(obj):
         return obj
 
+def getElementChildren(element):
+    """Iterator over children of an element that are elements, not, e.g.,
+    comments.
+    """
+    for childElem in element:
+        if (not hasattr(childElem, 'tag') or
+            not isinstance(childElem.tag, basestring)):
+            continue
+        yield childElem
+
+
 # Generic ElementTree Helper classes
 class QName(ElementTree.QName):
     """Extend ElementTree implementation for improved attribute access support

@@ -15,7 +15,7 @@ from ndg.xacml.core.resource import Resource
 from ndg.xacml.core.action import Action
 from ndg.xacml.core.environment import Environment
 from ndg.xacml.parsers import XMLParseError
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 from ndg.xacml.parsers.etree.reader import ETreeAbstractReader
 from ndg.xacml.parsers.etree.factory import ReaderFactory
 
@@ -48,33 +48,29 @@ class TargetReader(ETreeAbstractReader):
                                 xacmlType.ELEMENT_LOCAL_NAME)
         
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             
             if localName == xacmlType.SUBJECTS_ELEMENT_LOCAL_NAME:
-                for subjElem in childElem:
+                for subjElem in getElementChildren(childElem):
                     SubjectReader = ReaderFactory.getReader(Subject)
                     target.subjects.append(SubjectReader.parse(subjElem,
                                                                common))
                                 
             elif localName == xacmlType.RESOURCES_ELEMENT_LOCAL_NAME:
-                for resourceElem in childElem:
+                for resourceElem in getElementChildren(childElem):
                     ResourceReader = ReaderFactory.getReader(Resource)
                     target.resources.append(ResourceReader.parse(resourceElem,
                                                                  common))
                 
             elif localName == xacmlType.ACTIONS_ELEMENT_LOCAL_NAME:
-                for targetElem in childElem:
+                for targetElem in getElementChildren(childElem):
                     ActionReader = ReaderFactory.getReader(Action)
                     target.actions.append(ActionReader.parse(targetElem,
                                                              common))
                 
             elif localName == xacmlType.ENVIRONMENTS_ELEMENT_LOCAL_NAME:
-                for environElem in childElem:
+                for environElem in getElementChildren(childElem):
                     EnvironmentReader = ReaderFactory.getReader(Environment)
                     target.environments.append(EnvironmentReader.parse(
                                                         environElem, common))

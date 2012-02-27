@@ -15,7 +15,7 @@ from ndg.xacml.core.policydefaults import PolicyDefaults
 from ndg.xacml.core.variabledefinition import VariableDefinition
 from ndg.xacml.core.rule import Rule
 from ndg.xacml.core.target import Target
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 from ndg.xacml.parsers.etree.reader import ETreeAbstractReader
 from ndg.xacml.parsers.etree.factory import ReaderFactory
     
@@ -100,11 +100,7 @@ class PolicyReader(ETreeAbstractReader):
                           xacmlType.DEFAULT_XACML_VERSION)
             
         # Parse sub-elements
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             localName = QName.getLocalPart(childElem.tag)
             
             if localName == xacmlType.DESCRIPTION_LOCAL_NAME:

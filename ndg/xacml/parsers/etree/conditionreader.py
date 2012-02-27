@@ -11,7 +11,7 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
 from ndg.xacml.core.condition import Condition
 from ndg.xacml.parsers import XMLParseError
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 from ndg.xacml.parsers.etree.reader import ETreeAbstractReader
 from ndg.xacml.parsers.etree.applyreader import ApplyReader
 
@@ -47,11 +47,7 @@ class ConditionReader(ETreeAbstractReader):
             
         # Parse sub-elements
         nSubElem = 0
-        for childElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(childElem, 'tag') or
-                not isinstance(childElem.tag, basestring)):
-                continue
+        for childElem in getElementChildren(elem):
             nSubElem += 1
             subElem = childElem
 

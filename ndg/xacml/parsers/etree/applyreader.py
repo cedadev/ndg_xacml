@@ -21,7 +21,7 @@ from ndg.xacml.core.attributedesignator import (SubjectAttributeDesignator,
                                                 ActionAttributeDesignator,
                                                 EnvironmentAttributeDesignator)
 from ndg.xacml.parsers import XMLParseError
-from ndg.xacml.parsers.etree import QName
+from ndg.xacml.parsers.etree import QName, getElementChildren
 from ndg.xacml.parsers.etree.reader import ETreeAbstractReader
 from ndg.xacml.parsers.etree.factory import ReaderFactory
 
@@ -79,11 +79,7 @@ class ApplyReader(ETreeAbstractReader):
         
         # Allow for any of the defined Expression sub-types in the child 
         # elements
-        for subElem in elem:
-            # Allow for non-element children such as comments.
-            if (not hasattr(subElem, 'tag') or
-                not isinstance(subElem.tag, basestring)):
-                continue
+        for subElem in getElementChildren(elem):
             localName = QName.getLocalPart(subElem.tag)
             if localName == xacmlType.ELEMENT_LOCAL_NAME:
                 applyObj.expressions.append(ApplyReader.parse(subElem, common))
