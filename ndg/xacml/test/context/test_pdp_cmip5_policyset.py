@@ -21,9 +21,9 @@ class Test(XacmlContextBaseTestCase):
     """Tests with CMIP5 policy set using nested policies and policy sets for
     efficiency.
     """
-    RESOURCE_1_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20111007.aggregation.dods'
-    RESOURCE_2_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20110915.aggregation.dods'
-    RESOURCE_3_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.3hr.land.3hr.r1i1p1.mrsos.20111007.aggregation.dods'
+    RESOURCE_1_ID = 'http://localhost/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20111007.aggregation.dods'
+    RESOURCE_2_ID = 'http://localhost/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20110915.aggregation.dods'
+    RESOURCE_3_ID = 'http://localhost/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.3hr.land.3hr.r1i1p1.mrsos.20111007.aggregation.dods'
     XACML_FILENAME = 'cmip5-policyset.xml'
     XACML_FILEPATH = os.path.join(THIS_DIR, 'cmip5_policyset', XACML_FILENAME)
 

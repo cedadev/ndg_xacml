@@ -15,7 +15,7 @@
         <Resources>
             <Resource>
                 <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/</AttributeValue>
                     <ResourceAttributeDesignator
                         AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                         DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -59,7 +59,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>

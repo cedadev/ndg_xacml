@@ -13,7 +13,7 @@
         <Resources>
             <Resource>
                 <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.</AttributeValue>
                     <ResourceAttributeDesignator
                         AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                         DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -28,7 +28,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -37,7 +37,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -46,7 +46,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -55,7 +55,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -64,7 +64,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -73,7 +73,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -82,7 +82,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -91,7 +91,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -100,7 +100,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -109,7 +109,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -118,7 +118,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -127,7 +127,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.atmos\.day\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -136,7 +136,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -145,7 +145,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -154,7 +154,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -163,7 +163,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -172,7 +172,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -181,7 +181,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -190,7 +190,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -199,7 +199,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.day\.ocean\.day\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -208,7 +208,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -217,7 +217,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -226,7 +226,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -235,7 +235,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -244,7 +244,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -253,7 +253,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -262,7 +262,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -271,7 +271,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -280,7 +280,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -289,7 +289,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.aerosol\.aero\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -298,7 +298,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -307,7 +307,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -316,7 +316,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -325,7 +325,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -334,7 +334,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -343,7 +343,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -352,7 +352,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -361,7 +361,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -370,7 +370,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -379,7 +379,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.atmos\.Amon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -388,7 +388,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -397,7 +397,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -406,7 +406,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -415,7 +415,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -424,7 +424,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -433,7 +433,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -442,7 +442,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -451,7 +451,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -460,7 +460,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -469,7 +469,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.land\.Lmon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -478,7 +478,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -487,7 +487,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -496,7 +496,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -505,7 +505,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -514,7 +514,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -523,7 +523,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -532,7 +532,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -541,7 +541,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -550,7 +550,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -559,7 +559,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.landIce\.LImon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -568,7 +568,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -577,7 +577,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -586,7 +586,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -595,7 +595,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -604,7 +604,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -613,7 +613,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -622,7 +622,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -631,7 +631,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -640,7 +640,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -649,7 +649,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.ocean\.Omon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -658,7 +658,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r10i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -667,7 +667,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r1i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -676,7 +676,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r2i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -685,7 +685,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r3i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -694,7 +694,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r4i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -703,7 +703,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r5i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -712,7 +712,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r6i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -721,7 +721,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r7i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -730,7 +730,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r8i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
@@ -739,7 +739,7 @@
                 <Resource>
                     <!-- Pattern match the request URI -->
                     <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/dodsC/cmip5\.output1\.MOHC\.HadCM3\.decadal1970\.mon\.seaIce\.OImon\.r9i3p1\.[^.?/]*\.20110825\.aggregation</AttributeValue>
                         <ResourceAttributeDesignator
                             AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                             DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>

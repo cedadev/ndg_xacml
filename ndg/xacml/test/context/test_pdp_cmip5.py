@@ -20,10 +20,10 @@ logging.basicConfig(level=logging.ERROR)
 class Test(XacmlContextBaseTestCase):
     """Tests with CMIP5 policy.
     """
-    RESOURCE_1_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20111007.aggregation.dods'
-    RESOURCE_2_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20110915.aggregation.dods'
-    RESOURCE_3_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/fileServer/esg_dataroot/cmip5/output1/MOHC/HadGEM2-ES/rcp60/day/land/day/r1i1p1/v20111007/mrsos/mrsos_day_HadGEM2-ES_rcp60_r1i1p1_20051201-20111130.nc'
-    RESOURCE_4_ID = 'http://cmip-dn.badc.rl.ac.uk/thredds/fileServer/esg_dataroot/cmip5/output1/MOHC/HadGEM2-ES/rcp60/day/land/day/r1i1p1/v20110915/mrsos/mrsos_day_HadGEM2-ES_rcp60_r1i1p1_20051201-20111130.nc'
+    RESOURCE_1_ID = 'http://localhost/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20111007.aggregation.dods'
+    RESOURCE_2_ID = 'http://localhost/thredds/dodsC/cmip5.output1.MOHC.HadGEM2-ES.rcp60.day.land.day.r1i1p1.mrsos.20110915.aggregation.dods'
+    RESOURCE_3_ID = 'http://localhost/thredds/fileServer/esg_dataroot/cmip5/output1/MOHC/HadGEM2-ES/rcp60/day/land/day/r1i1p1/v20111007/mrsos/mrsos_day_HadGEM2-ES_rcp60_r1i1p1_20051201-20111130.nc'
+    RESOURCE_4_ID = 'http://localhost/thredds/fileServer/esg_dataroot/cmip5/output1/MOHC/HadGEM2-ES/rcp60/day/land/day/r1i1p1/v20110915/mrsos/mrsos_day_HadGEM2-ES_rcp60_r1i1p1_20051201-20111130.nc'
     XACML_FILENAME = 'policy_cmip5.xml'
     XACML_FILEPATH = os.path.join(THIS_DIR, XACML_FILENAME)
 

@@ -15,7 +15,7 @@
         <Resources>
             <Resource>
                 <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
-                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://cmip-dn\.badc\.rl\.ac\.uk/thredds/fileServer/</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^https?://localhost/thredds/fileServer/</AttributeValue>
                     <ResourceAttributeDesignator
                         AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
                         DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
