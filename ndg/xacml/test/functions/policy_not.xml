@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:policy"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>
+        Test for not function.
+    </Description>
+
+    <!--
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!-- Deny everything by default -->
+    <Rule RuleId="urn:ndg:security1.0:authz:test:DenyAllRule" Effect="Deny"/>
+
+    <Rule RuleId="urn:ndg:security:test:function:not:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource1</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+                    <SubjectAttributeDesignator
+                        AttributeId="urn:ndg:security:authz:1.0:attr"
+                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">role1</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:not:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource2</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:not">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-at-least-one-member-of">
+                    <SubjectAttributeDesignator
+                        AttributeId="urn:ndg:security:authz:1.0:attr"
+                        DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-bag">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">norole</AttributeValue>
+                    </Apply>
+                </Apply>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>
