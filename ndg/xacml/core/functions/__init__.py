@@ -342,6 +342,7 @@ class FunctionClassFactoryInterface(object):
         '''
         return None
     
+
 class FunctionClassFactoryBase(FunctionClassFactoryInterface):
     """Base implementation for XACML Function Class Factory.  There should be
     one derived type for each function family implemented in sub-modules of 
@@ -445,7 +446,6 @@ class FunctionClassFactoryBase(FunctionClassFactoryInterface):
         @type identifier: basestring
         """
 
-        log.debug("loadFunction: %s", identifier)
         # str.capitalize doesn't do what's required: need to capitalize the 
         # first letter of the word BUT retain camel case for the rest of it
         _capitalize = lambda s: s[0].upper() + s[1:]
@@ -453,10 +453,7 @@ class FunctionClassFactoryBase(FunctionClassFactoryInterface):
         # Extract the function name and the type portion of the function
         # name in order to make an implementation of a class to handle it
         functionName = identifier.split(self.__class__.URN_SEP)[-1]
-        log.debug("functionName: %s", functionName)
-        log.debug("FUNCTION_NS_SUFFIX: %s", self.__class__.FUNCTION_NS_SUFFIX)
         typePart = functionName.split(self.__class__.FUNCTION_NS_SUFFIX)[0]
-        log.debug("typePart: %s", typePart)
         
         # Attempt to infer from the function name the associated type
         typeName = _capitalize(typePart)
@@ -464,23 +461,19 @@ class FunctionClassFactoryBase(FunctionClassFactoryInterface):
         # Remove any hyphens converting to camel case
         if '-' in typeName:
             typeName = ''.join([_capitalize(i) for i in typeName.split('-')])
-        log.debug("typeName: %s", typeName)
             
         typeURI = AttributeValue.TYPE_URI_MAP.get(typeName)
-        log.debug("typeURI: %s", typeURI)
         if typeURI is None:
             # Ugly hack to allow for functions that start with a prefix that
             # isn't a real type.
             if typePart in SPECIAL_TYPE_MAP:
                 typeURI = AttributeValue.TYPE_URI_MAP[
                                                     SPECIAL_TYPE_MAP[typePart]]
-                log.debug("typeURI: %s", typeURI)
             else:
                 raise TypeError('No AttributeValue.TYPE_URI_MAP entry for '
                                 '%r type' % typePart) 
             
         _type = self.attributeValueClassFactory(typeURI)
-        log.debug("_type: %s", _type)
         if _type is None:
             raise TypeError('No AttributeValue.TYPE_MAP entry for %r type' %
                             typeName)
@@ -767,4 +760,3 @@ class FunctionMap(VettedDict):
 # Function map singleton used by match and apply classes - add new keys to
 # this dictionary to enable support for custom functions
 functionMap = FunctionMap()
-        
