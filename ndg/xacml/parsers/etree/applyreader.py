@@ -14,10 +14,11 @@ log = logging.getLogger(__name__)
 
 from ndg.xacml.core.apply import Apply
 from ndg.xacml.core.attributevalue import AttributeValue
+from ndg.xacml.core.condition import Condition
 from ndg.xacml.core.variablereference import VariableReference
 from ndg.xacml.core.attributeselector import AttributeSelector
 from ndg.xacml.core.attributedesignator import (SubjectAttributeDesignator,
-                                                EnvironmentAttributeDesignator,
+                                                ResourceAttributeDesignator,
                                                 ActionAttributeDesignator,
                                                 EnvironmentAttributeDesignator)
 from ndg.xacml.parsers import XMLParseError
@@ -95,6 +96,13 @@ class ApplyReader(ETreeAbstractReader):
                 applyObj.expressions.append(
                                 SubjectAttributeDesignatorReader.parse(subElem,
                                                                        common))
+                
+            elif localName == ResourceAttributeDesignator.ELEMENT_LOCAL_NAME:
+                ResourceAttributeDesignatorReader = ReaderFactory.getReader(
+                                                ResourceAttributeDesignator)
+                applyObj.expressions.append(
+                                ResourceAttributeDesignatorReader.parse(subElem,
+                                                                        common))
                 
             elif localName == EnvironmentAttributeDesignator.ELEMENT_LOCAL_NAME:
                 EnvironmentAttributeDesignatorReader = ReaderFactory.getReader(
