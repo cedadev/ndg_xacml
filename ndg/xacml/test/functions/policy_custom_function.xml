@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:policy"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>
+        Test for not function.
+    </Description>
+
+    <!--
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!-- Deny everything by default -->
+    <Rule RuleId="urn:ndg:security1.0:authz:test:DenyAllRule" Effect="Deny"/>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-urlencode:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource1</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:string-urlencode">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http%3A%2F%2Fabc%2Fdef%3Fquery%3Da%26para%3Db%23frag</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-urlencode:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource2</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:string-urlencode">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http%3A%2F%2Fabc%2Fxyz%3Fquery%3Da%26para%3Db%23frag</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+
+    <Rule RuleId="urn:ndg:security:test:function:anyuri-urlencode:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource3</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:anyURI-urlencode">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http%3A%2F%2Fabc%2Fdef%3Fquery%3Da%26para%3Db%23frag</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:anyuri-urlencode:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource4</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:anyURI-urlencode">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http%3A%2F%2Fabc%2Fxyz%3Fquery%3Da%26para%3Db%23frag</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+
+    <Rule RuleId="urn:ndg:security:test:function:string-md5hex:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource5</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:string-md5hex">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">2fabc7baf0255cfda5291dc7e780ba6b</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-md5hex:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource6</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:string-md5hex">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">2fxyz7baf0255cfda5291dc7e780ba6b</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+
+    <Rule RuleId="urn:ndg:security:test:function:anyuri-md5hex:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource7</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:anyURI-md5hex">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">2fabc7baf0255cfda5291dc7e780ba6b</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:anyuri-md5hex:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource8</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:ndg:xacml:2.0:function:anyURI-md5hex">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://abc/def?query=a&amp;para=b#frag</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">2fxyz7baf0255cfda5291dc7e780ba6b</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>

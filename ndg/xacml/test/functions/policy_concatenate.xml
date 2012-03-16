@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:test:policy"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides">
+    <Description>
+        Test for not function.
+    </Description>
+
+    <!--
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>
+
+    <!-- Deny everything by default -->
+    <Rule RuleId="urn:ndg:security1.0:authz:test:DenyAllRule" Effect="Deny"/>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-concatenate:1" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource1</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">role:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">role:role1</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-concatenate:2" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource2</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">role:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">role:role2</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-concatenate:3" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource3</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[role:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">-name</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">]</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[role:role1-name]</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:string-concatenate:4" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource4</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[role:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">-name</AttributeValue>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">]</AttributeValue>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[role:role2-name]</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+
+    <Rule RuleId="urn:ndg:security:test:function:url-string-concatenate:5" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource5</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:url-string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">file:///base/</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">file:///base/role1</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:url-string-concatenate:6" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource6</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:url-string-concatenate">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">file:///base/</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">file:///base/role2</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+
+    <Rule RuleId="urn:ndg:security:test:function:url-string-concatenate:7" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource7</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:url-string-concatenate">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:esg:openid"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator 
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">testuser1:role1</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+    <Rule RuleId="urn:ndg:security:test:function:url-string-concatenate:8" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">http://localhost/resource8</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+        <Condition>
+            <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-equal">
+                <Apply FunctionId="urn:oasis:names:tc:xacml:2.0:function:url-string-concatenate">
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:anyURI-one-and-only">
+                        <SubjectAttributeDesignator
+                            AttributeId="urn:esg:openid"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </Apply>
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">:</AttributeValue>
+                    <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+                        <SubjectAttributeDesignator 
+                            AttributeId="urn:ndg:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </Apply>
+                </Apply>
+                <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">testuser2:role1</AttributeValue>
+            </Apply>
+        </Condition>
+    </Rule>
+</Policy>
