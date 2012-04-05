@@ -29,10 +29,19 @@ expressing access control policies.
 
 See: http://www.oasis-open.org/committees/xacml/
 
-Release 0.4.1
+Release 0.5.0
 -------------
-Fixes and enhancements from Richard Wilkinson (Tessella):
- * Added an implementation of the first-applicable rule combining algorithm.
+Major enhancements including additional language features and support for lxml:
+
+ * Optional support for lxml as alternative to ElementTree - gives better Xpath support
+ * Added concatenate functions and custom functions for URL encoding and MD5 hash custom functions.
+ * Added support for language features:
+   - for SAML 2.0 profile of XACML v2.0 (http://docs.oasis-open.org/xacml/2.0/access_control-xacml-2.0-saml-profile-spec-os.pdf)
+   - AttributeSelectors
+   - PolicySets. 
+   - first-applicable rule combining algorithm
+   - Incorporated NOT and modified AND functions (from Prashant Kediyal). 
+ * Support for adding custom functions with ndg.xacml.core.functions.FunctionMap.load_custom_function
  * Fix for ticket:1130 and related bug
   - In ndg.xacml.core.target.Target._matchChild, all SubjectMatches within a 
   Subject must evaluate to true for an overall match for the Subject (and 
@@ -90,7 +99,7 @@ include new parsers, functions and attribute types
 
 setup(
     name =           		'ndg_xacml',
-    version =        		'0.4.1',
+    version =        		'0.5.0',
     description =           'XACML 2.0 implementation for the NERC DataGrid',
     long_description =		_longDescription,
     author =         		'Philip Kershaw',
@@ -105,7 +114,7 @@ setup(
     namespace_packages =	['ndg'],
     package_data =		    {
         'ndg.xacml.core': ['documentation/Makefile'],
-        'ndg.xacml.test': ['*.xml'],
+        'ndg.xacml.test': ['*.xml', "urn*"],
     },
     entry_points =          None,
     test_suite =		    'ndg.xacml.test',
@@ -114,6 +123,7 @@ setup(
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Environment :: Web Environment',
+        'Intended Audience :: End Users/Desktop',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
         'Intended Audience :: Science/Research',
@@ -126,6 +136,7 @@ setup(
         'Topic :: Internet',
         'Topic :: Scientific/Engineering',
         'Topic :: System :: Distributed Computing',
+        'Topic :: System :: Systems Administration :: Authentication/Directory',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ]
 )
