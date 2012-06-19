@@ -120,6 +120,9 @@ setup(
     package_data =		    {
         'ndg.xacml.core': ['documentation/Makefile'],
         'ndg.xacml.test': ['*.xml', "urn*"],
+        'ndg.xacml.test.faam_policyset': ['*.xml', "urn*"],
+        'ndg.xacml.test.cmip5_policyset': ['*.xml', "urn*"],
+        'ndg.xacml.test.functions': ['*.xml', "urn*"],
     },
     entry_points =          None,
     test_suite =		    'ndg.xacml.test',
