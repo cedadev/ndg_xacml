@@ -8,7 +8,7 @@ __date__ = "26/03/10"
 __copyright__ = ""
 __license__ = "BSD - see LICENSE file in top-level directory"
 __contact__ = "Philip.Kershaw@stfc.ac.uk"
-__revision__ = '$Id: $'
+__revision__ = '$Id$'
 from ndg.xacml.core.context.exceptions import XacmlContextTypeError
 from ndg.xacml.core.functions import AbstractFunction, FunctionClassFactoryBase
 from ndg.xacml.core.attributevalue import AttributeValueClassFactory
