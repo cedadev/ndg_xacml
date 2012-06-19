@@ -49,7 +49,7 @@ class PolicyFinderBase(object):
         @param common: parsing common data
         @type common: from ndg.xacml.parsers.common.Common
         @return: policy set
-        @type: None (subclasses should return ndg.xacml.core.policy.PolicySet)
+        @rtype: None (subclasses should return ndg.xacml.core.policy.PolicySet)
         """
         return None
 
@@ -74,8 +74,8 @@ class PolicyFinderBase(object):
 
     def addPolicySetReference(self, policySet):
         """
-        @param policy: policy set
-        @type policy: ndg.xacml.core.policy.PolicySet
+        @param policySet: policy set
+        @type policySet: ndg.xacml.core.policy.PolicySet
         @raise XMLParseError: if the policy's ID is a duplicate of one already
         found
         """

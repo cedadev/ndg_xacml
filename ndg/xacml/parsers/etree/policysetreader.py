@@ -164,8 +164,8 @@ class PolicySetReader(ETreeAbstractReader):
         """Retrieve policy set referenced by ID.
         @param common: parsing common data
         @type common: from ndg.xacml.parsers.common.Common
-        @param policyIdReference: policy ID
-        @type policyIdReference: str
+        @param policySetIdReference: policy ID
+        @type policySetIdReference: str
         @return: policy set
         @rtype: ndg.xacml.core.policy.PolicySet derived type
         """

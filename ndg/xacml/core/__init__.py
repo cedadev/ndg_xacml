@@ -166,8 +166,6 @@ class TargetChildBase(XacmlPolicyBase):
     @property
     def matches(self):
         """Get matches list for this target
-        @return: list of matches
-        @rtype: ndg.xacml.core.utils.TypedList
         """
         return self.__matches
     

@@ -1,0 +1,11 @@
+#
+# MANIFEST.in file to enable inclusion of XML policy files
+# 
+# NERC DataGrid XACML 
+# 
+# P J Kershaw 19/06/12
+# 
+# Copyright (C) 2012 STFC
+# 
+# BSD - See LICENCE file for details
+recursive-include ndg/xacml/test/ *.xml

@@ -112,8 +112,6 @@ class UrlPolicyFinder(PolicyFinderBase):
         file:///dir/file is treated as an absolute path.
         @param reference: ID reference
         @type reference: str
-        @param common: parsing common data
-        @type common: from ndg.xacml.parsers.common.Common
         @return: URL
         @rtype: str
         """
