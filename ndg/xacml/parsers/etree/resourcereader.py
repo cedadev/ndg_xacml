@@ -19,4 +19,3 @@ class ResourceReader(TargetChildReader):
     @type TYPE: type
     '''
     TYPE = Resource
-     

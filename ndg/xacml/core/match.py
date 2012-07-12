@@ -324,15 +324,23 @@ class MatchBase(XacmlCoreBase):
             attrMatchStatusValues[i] = matchFunction.evaluate(
                                                          matchAttributeValue,
                                                          requestAttributeValue)
-            if attrMatchStatusValues[i] == True:
-                if log.getEffectiveLevel() <= logging.DEBUG:
+            if log.getEffectiveLevel() <= logging.DEBUG:
+                if attrMatchStatusValues[i] == True:
                     log.debug('Target attribute value %r matches request '
                               'attribute value %r matches using match '
                               'function Id %r',
                               matchAttributeValue,
                               requestAttributeValue,
                               self.matchId)
-        
+                else:
+                    log.debug('Target attribute value %r doesn\'t match '
+                              'request attribute value %r with match function '
+                              'Id %r',
+                              matchAttributeValue,
+                              requestAttributeValue,
+                              self.matchId)
+                    
+            
         # Return true if a match was found.
         matchStatus = any(attrMatchStatusValues)
         
