@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet PolicySetId="urn:ndg:security:1.0:authz:neodc:policy-set"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable">
+
+    <Description>
+        Example EO Policy set
+    </Description>
+
+    <!--
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+
+    <Target>
+        <Resources>
+        <Resource>
+            <!-- Pattern match all request URIs beginning with / -->
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+            <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/.*$</AttributeValue>
+            <ResourceAttributeDesignator
+                AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        </ResourceMatch>
+        </Resource>
+    </Resources>
+    </Target>
+
+    <PolicyIdReference>urn:ndg:security:1.0:authz:neodc:policy-mtci</PolicyIdReference>
+</PolicySet>
