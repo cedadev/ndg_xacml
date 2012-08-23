@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy PolicyId="urn:ndg:security:1.0:authz:neodc:policy-mtci"
+    xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:esg="http://www.earthsystemgrid.org/"
+    xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:cd:04 http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-cd-04.xsd"
+    RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Description>
+        Policy for download service for host: localhost
+    </Description>
+    
+    <!-- 
+        The Policy target(s) define which requests apply to the whole policy
+    -->
+    <Target>
+        <Resources>
+            <Resource>
+                <!-- Pattern match all request URIs beginning with / -->
+                <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                    <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/mtci/.*$</AttributeValue>
+                    <ResourceAttributeDesignator
+                        AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                        DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                </ResourceMatch>
+            </Resource>
+        </Resources>
+    </Target>   
+
+    <Rule RuleId="download service: download: /neodc/mtci RF Permit" Effect="Permit">
+        <Target>
+            <Subjects>
+                <Subject>
+                    <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">mtci</AttributeValue>
+                        <SubjectAttributeDesignator AttributeId="urn:ceda:security:authz:1.0:attr"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                    </SubjectMatch>
+                </Subject>
+            </Subjects>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/mtci/.*[^/]$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
+
+    <Rule RuleId="download service: download: /neodc/mtci RF Deny" Effect="Deny">
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/mtci/.*[^/]$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
+
+    <Rule RuleId="download service: download: /neodc/mtci RD Permit" Effect="Permit">
+        <Target>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/mtci/(.*/)?$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
+
+    <!-- 
+         Deny everything by default.
+         For first-applicable rule combining algorithm this must come last since everything after it
+         will be ignored.
+    -->
+    <Rule RuleId="Deny all Rule" Effect="Deny"/>
+</Policy>
