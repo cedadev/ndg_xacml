@@ -159,4 +159,41 @@
             </Apply>
         </Condition>
     </Rule>
+    <Rule RuleId="ESGF P2P attribute type with roles specified in Subjects" Effect="Permit">
+        <!-- 
+            Example where test subject doesn't have the required roles
+        -->
+        <Target>
+            <Subjects>
+                <Subject>
+                    <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <SubjectAttributeDesignator 
+                            AttributeId="CMIP5 Research"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">user</AttributeValue>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">publisher</AttributeValue>
+                    </SubjectMatch>
+                </Subject>
+                <Subject>
+                    <SubjectMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+                        <SubjectAttributeDesignator 
+                            AttributeId="CMIP5 Commercial"
+                            DataType="http://www.w3.org/2001/XMLSchema#string"/>
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">publisher</AttributeValue>
+                    </SubjectMatch>
+                </Subject>
+            </Subjects>
+            <Resources>
+                <Resource>
+                    <!-- Pattern match the request URI -->
+                    <ResourceMatch MatchId="urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match">
+                        <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#anyURI">^http://localhost/multiple-subjects.*$</AttributeValue>
+                        <ResourceAttributeDesignator
+                            AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+                            DataType="http://www.w3.org/2001/XMLSchema#anyURI"/>
+                    </ResourceMatch>
+                </Resource>
+            </Resources>
+        </Target>
+    </Rule>
 </Policy>

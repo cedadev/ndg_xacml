@@ -37,6 +37,8 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
     AT_LEAST_ONE_SUBJECT_ROLE_RESTRICTED_ID = \
         'http://localhost/at-least-one-of-subject-role-restricted'
         
+    MULTIPLE_SUBJECTS_ID = 'http://localhost/multiple-subjects'
+    
     def setUp(self):
         self.pdp = self._createPDPfromNdgTest1Policy()
         
@@ -153,6 +155,53 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
             self.failIf(result.decision != Decision.PERMIT, 
                         "Expecting PERMIT decision")            
         
+    def test11MultipleSubjectsSpecified(self):
+        # Test for case where multiple subjects are specified
+        ctxHandler = TestContextHandler()
+        ctxHandler.pdp = self.pdp
         
+        request = self._createRequestCtx(
+                    self.__class__.MULTIPLE_SUBJECTS_ID,
+                    subjectRoles=('user', 'publisher'),
+                    roleAttributeId='CMIP5 Research')
+        
+        response = ctxHandler.handlePEPRequest(request)
+        self.failIf(response is None, "Null response")
+        for result in response.results:
+            self.failIf(result.decision != Decision.PERMIT, 
+                        "Expecting PERMIT decision")            
+        
+    def test12MultipleSubjectsSpecified(self):
+        # Test for case where multiple subjects are specified
+        ctxHandler = TestContextHandler()
+        ctxHandler.pdp = self.pdp
+        
+        request = self._createRequestCtx(
+                    self.__class__.MULTIPLE_SUBJECTS_ID,
+                    subjectRoles=('user',),
+                    roleAttributeId='CMIP5 Research')
+        
+        response = ctxHandler.handlePEPRequest(request)
+        self.failIf(response is None, "Null response")
+        for result in response.results:
+            self.failIf(result.decision != Decision.PERMIT, 
+                        "Expecting PERMIT decision")  
+
+        
+    def test13MultipleSubjectsSpecified(self):
+        # Test for case where multiple subjects are specified
+        ctxHandler = TestContextHandler()
+        ctxHandler.pdp = self.pdp
+        
+        request = self._createRequestCtx(
+                    self.__class__.MULTIPLE_SUBJECTS_ID,
+                    subjectRoles=('publisher',),
+                    roleAttributeId='CMIP5 Research')
+        
+        response = ctxHandler.handlePEPRequest(request)
+        self.failIf(response is None, "Null response")
+        for result in response.results:
+            self.failIf(result.decision != Decision.PERMIT, 
+                        "Expecting PERMIT decision")      
 if __name__ == "__main__":
     unittest.main()

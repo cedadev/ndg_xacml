@@ -42,6 +42,7 @@ class XacmlContextTestCase(XacmlContextBaseTestCase):
         
     def test04CreateCtxHandler(self):
         ctxHandler = TestContextHandler()
+        self.assert_(ctxHandler)
         
     def test05PDPInterface(self):
         self.assertRaises(TypeError, PDPInterface)
