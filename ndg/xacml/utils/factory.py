@@ -58,7 +58,7 @@ def importModuleObject(moduleName, objectName=None, objectType=None):
         raise TypeError("Specified class %r must be derived from %r; got %r" %
                         (objectName, objectType, importedObject))
     
-    log.info('Imported %r from module %r', objectName[0], _moduleName)
+    log.debug('Imported %r from module %r', objectName[0], _moduleName)
     return importedObject
 
 
@@ -126,8 +126,8 @@ def callModuleObject(moduleName, objectName=None, moduleFilePath=None,
 
     # Instantiate class
     if objectArgs:
-        object = importedObject(*objectArgs, **objectProperties)
+        obj = importedObject(*objectArgs, **objectProperties)
     else:
-        object = importedObject(**objectProperties)
+        obj = importedObject(**objectProperties)
         
-    return object
+    return obj
