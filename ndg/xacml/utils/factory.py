@@ -58,7 +58,6 @@ def importModuleObject(moduleName, objectName=None, objectType=None):
         raise TypeError("Specified class %r must be derived from %r; got %r" %
                         (objectName, objectType, importedObject))
     
-    log.debug('Imported %r from module %r', objectName[0], _moduleName)
     return importedObject
 
 
