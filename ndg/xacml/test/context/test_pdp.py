@@ -63,8 +63,7 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                         "Expecting Permit decision")
         
     def test03PrivateResource(self):
-        request = self._createRequestCtx(
-                                    self.__class__.PRIVATE_RESOURCE_ID)
+        request = self._createRequestCtx(self.__class__.PRIVATE_RESOURCE_ID)
         response = self.pdp.evaluate(request)
         self.failIf(response is None, "Null response")
         for result in response.results:
@@ -171,24 +170,26 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
             self.failIf(result.decision != Decision.PERMIT, 
                         "Expecting PERMIT decision")            
         
-    def test12MultipleSubjectsSpecified(self):
-        # Test for case where multiple subjects are specified
+    def test12OneSubjectSpecifiedButMultipleRequiredForMatch(self):
+        # Test for case where one subject attribute value is specified from a 
+        # SubjectMatch element requiring two attribute values - the result
+        # should be false since the semantics of SubjectMatch is that ALL
+        # elements must match - see core spec. XACML 2.0 section 7.6 Target
+        # evaluation
         ctxHandler = TestContextHandler()
         ctxHandler.pdp = self.pdp
         
-        request = self._createRequestCtx(
-                    self.__class__.MULTIPLE_SUBJECTS_ID,
-                    subjectRoles=('user',),
-                    roleAttributeId='CMIP5 Research')
+        request = self._createRequestCtx(self.__class__.MULTIPLE_SUBJECTS_ID,
+                                         subjectRoles=('user',),
+                                         roleAttributeId='CMIP5 Research')
         
         response = ctxHandler.handlePEPRequest(request)
         self.failIf(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
-                        "Expecting PERMIT decision")  
+            self.failIf(result.decision != Decision.DENY, 
+                        "Expecting DENY decision")
 
-        
-    def test13MultipleSubjectsSpecified(self):
+    def test13OneSubjectSpecifiedAndOneRequiredForSubjectMatch(self):
         # Test for case where multiple subjects are specified
         ctxHandler = TestContextHandler()
         ctxHandler.pdp = self.pdp
@@ -202,6 +203,8 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
         self.failIf(response is None, "Null response")
         for result in response.results:
             self.failIf(result.decision != Decision.PERMIT, 
-                        "Expecting PERMIT decision")      
+                        "Expecting PERMIT decision")
+
+
 if __name__ == "__main__":
     unittest.main()

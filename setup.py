@@ -29,6 +29,11 @@ expressing access control policies.
 
 See: http://www.oasis-open.org/committees/xacml/
 
+Release 0.5.2
+-------------
+ * Fix for test_pdp with SubjectMatch semantics - ALL values must match
+   within a <SubjectMatch/> element for a rule match
+   
 Release 0.5.1
 -------------
  * Added MANIFEST.in to fix missing policy files in test area
@@ -104,7 +109,7 @@ include new parsers, functions and attribute types
 
 setup(
     name =           		'ndg_xacml',
-    version =        		'0.5.1',
+    version =        		'0.5.2',
     description =           'XACML 2.0 implementation for the NERC DataGrid',
     long_description =		_longDescription,
     author =         		'Philip Kershaw',
