@@ -27,7 +27,7 @@ class XacmlContextTestCase(XacmlContextBaseTestCase):
     
     def test01CreateRequest(self):
         requestCtx = self._createRequestCtx("http://localhost")
-        self.assert_(requestCtx)
+        self.assertTrue(requestCtx)
         
     def test02CreateResponse(self):
         response = Response()
@@ -42,18 +42,18 @@ class XacmlContextTestCase(XacmlContextBaseTestCase):
         
     def test04CreateCtxHandler(self):
         ctxHandler = TestContextHandler()
-        self.assert_(ctxHandler)
+        self.assertTrue(ctxHandler)
         
     def test05PDPInterface(self):
         self.assertRaises(TypeError, PDPInterface)
         
     def test06CreatePDP(self):
         pdp = PDP()
-        self.assert_(pdp)
+        self.assertTrue(pdp)
         
     def test07CreatePDPfromPolicy(self):
         pdp = self._createPDPfromNdgTest1Policy()
-        self.assert_(pdp)
+        self.assertTrue(pdp)
         
                                 
 if __name__ == "__main__":

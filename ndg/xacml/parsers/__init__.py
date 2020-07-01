@@ -21,9 +21,8 @@ class XMLParseError(XacmlError):
     """XACML package XML Parsing error"""
 
 
-class AbstractReader(object):
+class AbstractReader(object, metaclass=ABCMeta):
     """Abstract base class for XACML reader"""
-    __metaclass__ = ABCMeta
     
     @classmethod
     def __subclasshook__(cls, C):
@@ -53,9 +52,8 @@ class AbstractReader(object):
         return reader(obj, common)
     
     
-class AbstractReaderFactory(object):
+class AbstractReaderFactory(object, metaclass=ABCMeta):
     """Abstract base class XACML reader factory"""
-    __metaclass__ = ABCMeta
     
     @classmethod
     @abstractmethod

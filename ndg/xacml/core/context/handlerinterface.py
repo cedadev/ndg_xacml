@@ -12,9 +12,8 @@ __revision__ = "$Id:$"
 from abc import ABCMeta, abstractmethod
 
        
-class CtxHandlerInterface(object):
+class CtxHandlerInterface(object, metaclass=ABCMeta):
     """Context Handler interface."""
-    __metaclass__ = ABCMeta
     __slots__ = ()
     
     @abstractmethod

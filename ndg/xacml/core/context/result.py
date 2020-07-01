@@ -99,7 +99,7 @@ class StatusCode(XacmlContextBase):
         '''@param value: status code value
         @type value: basestring
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError("\"value\" must be a basestring derived type, "
                             "got %r" % value.__class__)
         
@@ -206,9 +206,9 @@ class Status(XacmlContextBase):
         @param value: the Message of this Status
         @type value: basestring
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('"statusMessage" must be a %r derived type, '
-                            "got %r" % (basestring, type(value)))
+                            "got %r" % (str, type(value)))
             
         self.__statusMessage = value
         
@@ -336,7 +336,7 @@ class Decision(object):
         @param attrDict: class instance attributes dictionary
         @type attrDict: dict
         '''
-        for attrName, val in attrDict.items():
+        for attrName, val in list(attrDict.items()):
             setattr(self, attrName, val)
             
     def _setValue(self, value):
@@ -351,7 +351,7 @@ class Decision(object):
             # Cast to string
             value = str(value)
             
-        elif not isinstance(value, basestring):
+        elif not isinstance(value, str):
             raise TypeError('Expecting string or Decision instance for '
                             '"value" attribute; got %r instead' % type(value))
             
@@ -399,7 +399,7 @@ class Decision(object):
             # Cast to string
             value = decision.value
             
-        elif isinstance(decision, basestring):
+        elif isinstance(decision, str):
             value = decision
             
         else:
@@ -568,9 +568,9 @@ class Result(XacmlContextBase):
         @type value: basestring
         @raise TypeError: incorrect type for input
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "resourceId" '
-                            'result; got %r' % (basestring, type(value)))
+                            'result; got %r' % (str, type(value)))
             
         self.__resourceId = value
                         

@@ -44,9 +44,9 @@ class PolicyDefaults(XacmlCoreBase):
         @type value: basestring / NoneType
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "xpathVersion" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__xpathVersion = value   
 

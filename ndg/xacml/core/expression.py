@@ -14,7 +14,7 @@ from abc import ABCMeta, abstractmethod
 from ndg.xacml.core import XacmlCoreBase
 
 
-class Expression(XacmlCoreBase):
+class Expression(XacmlCoreBase, metaclass=ABCMeta):
     """XACML Expression type
     
     @cvar ELEMENT_LOCAL_NAME: XML local name for this element
@@ -25,7 +25,6 @@ class Expression(XacmlCoreBase):
     @ivar __dataType: data type for this expression
     @type __dataType: None / basestring
     """
-    __metaclass__ = ABCMeta
     ELEMENT_LOCAL_NAME = None
     DATA_TYPE_ATTRIB_NAME = 'DataType'
     
@@ -39,9 +38,9 @@ class Expression(XacmlCoreBase):
         return self.__dataType
 
     def _set_dataType(self, value):
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "dataType" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__dataType = value   
 

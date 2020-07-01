@@ -58,9 +58,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                                     self.__class__.NOT_APPLICABLE_RESOURCE_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.NOT_APPLICABLE, 
+            self.assertFalse(result.decision != Decision.NOT_APPLICABLE, 
                         "Expecting not applicable decision")
         
     def test02PublicallyAccessibleResource(self):
@@ -68,18 +68,18 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.PUBLIC_RESOURCE_ID,
                                          includeSubject=False)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")
         
     def test03PrivateResource(self):
         request = self._createRequestCtx(
                                     self.__class__.PRIVATE_RESOURCE_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")
 
     def test04SingleSubjectRoleRestrictedResource(self):
@@ -87,9 +87,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                             self.__class__.SINGLE_SUBJECT_ROLE_RESTRICTED_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test05SingleSubjectRoleRestrictedResourceDeniesAccess(self):
@@ -98,9 +98,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.SINGLE_SUBJECT_ROLE_RESTRICTED_ID,
                             subjectRoles=('student',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test06ActionAndSingleSubjectRoleRestrictedResource(self):
@@ -108,9 +108,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                     self.__class__.ACTION_AND_SINGLE_SUBJECT_ROLE_RESTRICTED_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")
 
     def test07ActionAndSingleSubjectRoleRestrictedResourceDeniesAccess(self):
@@ -119,9 +119,9 @@ class Test(XacmlContextBaseTestCase):
                     self.__class__.ACTION_AND_SINGLE_SUBJECT_ROLE_RESTRICTED_ID,
                     action='write')
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
 
@@ -135,9 +135,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL1_ID,
                             subjectRoles=('postdoc',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test11HierachyLevel1Resource(self):
@@ -146,9 +146,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL1_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test12HierachyLevel2Resource(self):
@@ -157,9 +157,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL2_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test13HierachyLevel2Resource(self):
@@ -168,9 +168,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL2_ID,
                             subjectRoles=('staff',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test14HierachyLevel3Resource(self):
@@ -179,9 +179,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_ID,
                             subjectRoles=('staff',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test15HierachyLevel3Resource(self):
@@ -190,9 +190,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_ID,
                             subjectRoles=('postdoc',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test16HierachyLevel3Resource(self):
@@ -201,9 +201,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
 
@@ -218,9 +218,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL1_NOINHERIT_ID,
                             subjectRoles=('postdoc',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test21HierachyLevel1Resource(self):
@@ -229,9 +229,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL1_NOINHERIT_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test22HierachyLevel2Resource(self):
@@ -240,9 +240,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL2_NOINHERIT_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test23HierachyLevel2Resource(self):
@@ -251,9 +251,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL2_NOINHERIT_ID,
                             subjectRoles=('staff',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test24HierachyLevel3Resource(self):
@@ -262,9 +262,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_NOINHERIT_ID,
                             subjectRoles=('staff',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test25HierachyLevel3Resource(self):
@@ -273,9 +273,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_NOINHERIT_ID,
                             subjectRoles=('postdoc',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test26HierachyLevel3Resource(self):
@@ -284,9 +284,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.LEVEL3_NOINHERIT_ID,
                             subjectRoles=('admin',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
 

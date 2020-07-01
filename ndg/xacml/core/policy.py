@@ -211,7 +211,7 @@ class Policy(PolicyBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "policyId" '
                             'attribute; got %r' % type(value))
             
@@ -232,7 +232,7 @@ class Policy(PolicyBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "version" '
                             'attribute; got %r' % type(value))
             
@@ -251,7 +251,7 @@ class Policy(PolicyBase):
         @type value: NoneType / basestring
         @raise TypeError: incorrect input type
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "ruleCombiningAlgId" '
                             'attribute; got %r' % type(value))
             
@@ -357,7 +357,7 @@ class Policy(PolicyBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         '''
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "description" '
                             'attribute; got %r' % type(value))
         self.__description = value

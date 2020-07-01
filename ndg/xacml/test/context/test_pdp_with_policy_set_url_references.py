@@ -35,62 +35,62 @@ class Test(XacmlContextBaseTestCase):
     XACML_POLICY_SET_FILEPATH = os.path.join(THIS_DIR, XACML_POLICY_SET_FILENAME)
 
     def setUp(self):
-        print "Setting up"
+        print("Setting up")
         self.pdp = PDP.fromPolicySource(self.__class__.XACML_POLICY_SET_FILEPATH, ReaderFactory,
                                         UrlPolicyFinder(THIS_DIR))
-        print "Setup complete"
+        print("Setup complete")
 
 
     def test01(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_DL1_ID,
                             subjectRoles=('staff',))
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test02(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_DL2_ID,
                             subjectRoles=('staff',))
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test03(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_VIEW1_ID,
                             subjectRoles=('admin',))
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test04(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_VIEW2_ID,
                             subjectRoles=('staff',))
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
 

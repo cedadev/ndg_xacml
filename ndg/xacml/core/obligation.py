@@ -74,7 +74,7 @@ class Effect(object):
         @param attrDict: instance attributes dictionary
         @type attrDict: dict
         '''
-        for attrName, val in attrDict.items():
+        for attrName, val in list(attrDict.items()):
             setattr(self, attrName, val)
             
     def _setValue(self, value):
@@ -89,7 +89,7 @@ class Effect(object):
             # Cast to string
             value = str(value)
             
-        elif not isinstance(value, basestring):
+        elif not isinstance(value, str):
             raise TypeError('Expecting string or Effect instance for '
                             '"value" attribute; got %r instead' % type(value))
             
@@ -125,7 +125,7 @@ class Effect(object):
             # Cast to string
             value = effect.value
             
-        elif isinstance(effect, basestring):
+        elif isinstance(effect, str):
             value = effect
             
         else:
@@ -194,9 +194,9 @@ class Obligation(XacmlCoreBase):
         @type value: NoneType / basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "obligationId" attribute; '
-                            'got %r' % (basestring, type(value)))
+                            'got %r' % (str, type(value)))
             
         self.__obligationId = value        
     
@@ -216,7 +216,7 @@ class Obligation(XacmlCoreBase):
         @type value: NoneType / basestring
         @raise TypeError: incorrect type for input
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "fulfillOn" attribute; got '
                             '%r' % (Effect, type(value)))
             

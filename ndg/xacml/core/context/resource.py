@@ -68,7 +68,7 @@ class Resource(RequestChildBase):
         return _dict
 
     def __setstate__(self, state):
-        for k, v in state.iteritems():
+        for k, v in state.items():
             if isinstance(v, etree.SerialisedElementTree):
                 setattr(self, k, etree.deserialiseIfElementTree(v))
             else:

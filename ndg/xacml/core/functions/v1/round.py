@@ -31,7 +31,7 @@ class Round(AbstractFunction):
         """
         try:
             return round(num)
-        except TypeError, e:
+        except TypeError as e:
             raise XacmlContextTypeError('Round function: %s' % e)
 
     

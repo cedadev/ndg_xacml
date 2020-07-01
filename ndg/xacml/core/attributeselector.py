@@ -70,9 +70,9 @@ class AttributeSelector(Expression):
         @type value: basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "requestContextPath" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__requestContextPath = value   
 

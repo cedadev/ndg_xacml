@@ -11,12 +11,11 @@ __revision__ = "$Id:$"
 from abc import ABCMeta, abstractmethod
 
 
-class PIPInterface(object):
+class PIPInterface(object, metaclass=ABCMeta):
     """Interface class for XACML Policy Information Point.  The PDP can relay 
     attribute queries back via the Context handler to the PIP in order to help
     it in making an access control decision
     """
-    __metaclass__ = ABCMeta
     __slots__ = ()
     
     @abstractmethod

@@ -56,7 +56,7 @@ class XacmlContextBase(XacmlCoreBase):
 
     def __setstate__(self, attrDict):
         '''Explicit implementation needed with __slots__'''
-        for attr, val in attrDict.items():
+        for attr, val in list(attrDict.items()):
             setattr(self, attr, val)
 
 class RequestChildBase(XacmlContextBase):

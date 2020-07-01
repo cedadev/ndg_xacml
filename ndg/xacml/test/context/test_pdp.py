@@ -47,9 +47,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                                     self.__class__.NOT_APPLICABLE_RESOURCE_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.NOT_APPLICABLE, 
+            self.assertFalse(result.decision != Decision.NOT_APPLICABLE, 
                         "Expecting not applicable decision")
         
     def test02PublicallyAccessibleResource(self):
@@ -57,17 +57,17 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.PUBLIC_RESOURCE_ID,
                                          includeSubject=False)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")
         
     def test03PrivateResource(self):
         request = self._createRequestCtx(self.__class__.PRIVATE_RESOURCE_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")
 
     def test04SingleSubjectRoleRestrictedResource(self):
@@ -75,9 +75,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                             self.__class__.SINGLE_SUBJECT_ROLE_RESTRICTED_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")  
 
     def test05SingleSubjectRoleRestrictedResourceDeniesAccess(self):
@@ -86,9 +86,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                             self.__class__.SINGLE_SUBJECT_ROLE_RESTRICTED_ID,
                             subjectRoles=('student',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test06ActionAndSingleSubjectRoleRestrictedResource(self):
@@ -96,9 +96,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
         request = self._createRequestCtx(
                     self.__class__.ACTION_AND_SINGLE_SUBJECT_ROLE_RESTRICTED_ID)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")
 
     def test07ActionAndSingleSubjectRoleRestrictedResourceDeniesAccess(self):
@@ -107,9 +107,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     self.__class__.ACTION_AND_SINGLE_SUBJECT_ROLE_RESTRICTED_ID,
                     action='write')
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")  
 
     def test08AtLeastOneSubjectRoleResource(self):
@@ -118,9 +118,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     self.__class__.AT_LEAST_ONE_SUBJECT_ROLE_RESTRICTED_ID,
                     action='write')
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")             
 
     def test09AtLeastOneSubjectRoleResourceDeniesAccess(self):
@@ -130,9 +130,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     self.__class__.AT_LEAST_ONE_SUBJECT_ROLE_RESTRICTED_ID,
                     subjectRoles=('student',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")             
     
     def test10PipAddsRequiredAttributeValToEnableAccess(self):
@@ -149,9 +149,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     subjectRoles=('student',))
         
         response = ctxHandler.handlePEPRequest(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting PERMIT decision")            
         
     def test11MultipleSubjectsSpecified(self):
@@ -165,9 +165,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     roleAttributeId='CMIP5 Research')
         
         response = ctxHandler.handlePEPRequest(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting PERMIT decision")            
         
     def test12OneSubjectSpecifiedButMultipleRequiredForMatch(self):
@@ -184,9 +184,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                                          roleAttributeId='CMIP5 Research')
         
         response = ctxHandler.handlePEPRequest(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting DENY decision")
 
     def test13OneSubjectSpecifiedAndOneRequiredForSubjectMatch(self):
@@ -200,9 +200,9 @@ class XacmlEvalPdpWithPermitOverridesPolicyTestCase(XacmlContextBaseTestCase):
                     roleAttributeId='CMIP5 Research')
         
         response = ctxHandler.handlePEPRequest(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting PERMIT decision")
 
 

@@ -141,9 +141,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.NOT_APPLICABLE,
+            self.assertFalse(result.decision != Decision.NOT_APPLICABLE,
                         "Expecting not applicable decision")
 
     def test02Permit(self):
@@ -157,9 +157,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting permit decision")
 
     def test03Deny(self):
@@ -173,9 +173,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting deny decision")
 
     def test04Indeterminate(self):
@@ -193,9 +193,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.INDETERMINATE,
+            self.assertFalse(result.decision != Decision.INDETERMINATE,
                         "Expecting indeterminate decision")
 
     def test05ExecutePermit(self):
@@ -209,9 +209,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting permit decision")
 
     def test06ExecuteConditionPermit(self):
@@ -225,9 +225,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting permit decision")
 
     def test07ExecuteConditionDeny(self):
@@ -242,9 +242,9 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting deny decision")
 
     def test08ExecuteLxmlPermit(self):
@@ -260,10 +260,10 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
             if Config.use_lxml:
-                self.failIf(result.decision != Decision.PERMIT,
+                self.assertFalse(result.decision != Decision.PERMIT,
                             "Expecting permit decision")
             else:
                 log.debug("Using ElementTree: dependent on the version, this "
@@ -281,13 +281,13 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
             if Config.use_lxml:
-                self.failIf(result.decision != Decision.PERMIT,
+                self.assertFalse(result.decision != Decision.PERMIT,
                             "Expecting permit decision")
             else:
-                self.failIf(result.decision != Decision.INDETERMINATE,
+                self.assertFalse(result.decision != Decision.INDETERMINATE,
                             "Expecting indeterminate decision")
 
     def test10SelectAttributeDeny(self):
@@ -301,13 +301,13 @@ class AttributeSelectorTestCase(XacmlContextBaseTestCase):
         request.elem = RequestElementTree.toXML(request)
         request.attributeSelector = EtreeXPathSelector(request.elem)
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
             if Config.use_lxml:
-                self.failIf(result.decision != Decision.DENY,
+                self.assertFalse(result.decision != Decision.DENY,
                             "Expecting deny decision")
             else:
-                self.failIf(result.decision != Decision.INDETERMINATE,
+                self.assertFalse(result.decision != Decision.INDETERMINATE,
                             "Expecting indeterminate decision")
 
 

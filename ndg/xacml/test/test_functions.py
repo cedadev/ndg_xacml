@@ -56,7 +56,7 @@ class FunctionTestCase(unittest.TestCase):
         anyUriMatchNs = \
             'urn:oasis:names:tc:xacml:2.0:function:anyURI-regexp-match'
             
-        self.assert_(issubclass(funcMap.get(anyUriMatchNs), RegexpMatchBase))
+        self.assertTrue(issubclass(funcMap.get(anyUriMatchNs), RegexpMatchBase))
 
     def test01_add_custom_function(self):
         func_map = FunctionMap()

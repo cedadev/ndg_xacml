@@ -26,7 +26,7 @@ except ImportError:
     import warnings
     warnings.warn(c14nWarning)
     
-from cStringIO import StringIO
+from io import StringIO
 
 
 def canonicalize(elem, **kw):
@@ -58,7 +58,7 @@ def prettyPrint(*arg, **kw):
     # Keep track of namespace declarations made so they're not repeated
     declaredNss = []
     if not Config.use_lxml:
-        mappedPrefixes = dict.fromkeys(ElementTree._namespace_map.values(), True)
+        mappedPrefixes = dict.fromkeys(list(ElementTree._namespace_map.values()), True)
         namespace_map_backup = ElementTree._namespace_map.copy()
     else:
         mappedPrefixes = {}
@@ -115,7 +115,7 @@ class _PrettyPrint(object):
         @rtype: basestring       
         '''  
         strAttribs = []
-        for attr, attrVal in elem.attrib.items():
+        for attr, attrVal in list(elem.attrib.items()):
             nsDeclaration = ''
             
             attrNamespace = QName.getNs(attr)
@@ -166,7 +166,7 @@ class _PrettyPrint(object):
 
     if Config.use_lxml:
         def _getNamespacePrefix(self, elem, namespace):
-            for nsPrefix, ns in elem.nsmap.iteritems():
+            for nsPrefix, ns in elem.nsmap.items():
                 if ns == namespace:
                     return nsPrefix
             raise KeyError('prettyPrint: missing namespace "%s" for '

@@ -12,10 +12,9 @@ from abc import ABCMeta, abstractmethod
 from ndg.xacml import Config, importElementTree
 ElementTree = importElementTree()
 
-class XPathSelectorInterface(object):
+class XPathSelectorInterface(object, metaclass=ABCMeta):
     """Interface for XPath selectors.
     """
-    __metaclass__ = ABCMeta
 
     @abstractmethod
     def __init__(self, contextElem):

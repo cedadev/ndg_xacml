@@ -8,7 +8,8 @@ __copyright__ = ""
 __license__ = "BSD - see LICENSE file in top-level directory"
 __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = '$Id$'
-import UserDict
+from collections.abc import MutableMapping
+
 
 # Interpret a string as a boolean
 str2Bool = lambda str: str.lower() in ("yes", "true", "t", "1")
@@ -126,7 +127,7 @@ class RestrictedKeyNamesDict(dict):
         initialisation
         """
         super(RestrictedKeyNamesDict, self).__init__(*arg, **kw)
-        self.__keyNames = self.keys() 
+        self.__keyNames = list(self.keys()) 
           
     def __setitem__(self, key, val):
         """@param key: key for item to set
@@ -159,7 +160,7 @@ class RestrictedKeyNamesDict(dict):
 _isIterable = lambda obj: getattr(obj, '__iter__', False)
 
   
-class VettedDict(UserDict.DictMixin):
+class VettedDict(MutableMapping):
     """Enforce custom checking on keys and items before addition to a 
     dictionary
     """
@@ -249,14 +250,22 @@ class VettedDict(UserDict.DictMixin):
         return repr(self.__map)
     
     def keys(self):
-        return self.__map.keys()
+        return list(self.__map.keys())
     
     def items(self):
-        return self.__map.items()
+        return list(self.__map.items())
     
     def values(self):
-        return self.__map.values()
+        return list(self.__map.values())
     
     def __contains__(self, val):
         return self.__map.__contains__(val)
     
+    def __delitem__(self, key):
+        del self.__map[key]
+    
+    def __iter__(self):
+        return iter(self.__map)
+    
+    def __len__(self):
+        return len(self.__map)
