@@ -45,7 +45,6 @@ setup(
 #    install_requires =		[],
     extras_require =        {'improved_xpath_support': 'lxml'},
     packages =       		find_packages(),
-    namespace_packages =	['ndg'],
     package_data =		    {
         'ndg.xacml.core': ['documentation/Makefile'],
         'ndg.xacml.test': ['*.xml', "urn*"],
