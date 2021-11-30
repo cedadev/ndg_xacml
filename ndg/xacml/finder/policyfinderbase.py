@@ -16,12 +16,11 @@ log = logging.getLogger(__name__)
 
 from ndg.xacml.parsers import XMLParseError
 
-class PolicyFinderBase(object):
+class PolicyFinderBase(object, metaclass=ABCMeta):
     """
     Base class for policy finders. The specific finder strategy is implemented
     in the findPolicy and findPolicySet methods.
     """
-    __metaclass__ = ABCMeta
 
     def __init__(self):
         self.policyMap = {}

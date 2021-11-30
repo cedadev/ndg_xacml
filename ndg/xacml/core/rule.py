@@ -69,7 +69,7 @@ class Effect(object):
         @param attrDict: class instance attributes dictionary
         @type attrDict: dict
         '''
-        for attrName, val in attrDict.items():
+        for attrName, val in list(attrDict.items()):
             setattr(self, attrName, val)
             
     def _setValue(self, value):
@@ -84,7 +84,7 @@ class Effect(object):
             # Cast to string
             value = str(value)
             
-        elif not isinstance(value, basestring):
+        elif not isinstance(value, str):
             raise TypeError('Expecting string or Effect instance for '
                             '"value" attribute; got %r instead' % type(value))
             
@@ -124,7 +124,7 @@ class Effect(object):
             # Cast to string
             value = effect.value
             
-        elif isinstance(effect, basestring):
+        elif isinstance(effect, str):
             value = effect
             
         else:
@@ -137,7 +137,7 @@ class Effect(object):
             
         return self.__value == value 
     
-    def __nonzero__(self):
+    def __bool__(self):
         """Boolean evaluation of a rule effect - True = Allow; False = Deny
         
         @return: True if the effect value is permit, False otherwise
@@ -284,9 +284,9 @@ class Rule(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: incorrect type set
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "id" attribute; got %r' % 
-                            (basestring, type(value)))
+                            (str, type(value)))
          
         self.__id = value   
 
@@ -331,7 +331,7 @@ class Rule(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: incorrect type set
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "description" '
                             'attribute; got %r' % type(value))
         self.__description = value

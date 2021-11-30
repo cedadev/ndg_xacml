@@ -27,22 +27,22 @@ class TestPdpEoPolicySet(XacmlContextBaseTestCase):
     XACML_FILEPATH = os.path.join(THIS_DIR, 'eo_policyset', XACML_FILENAME)
 
     def setUp(self):
-        print "Setting up"
+        print("Setting up")
         self.pdp = PDP.fromPolicySource(self.__class__.XACML_FILEPATH, ReaderFactory)
-        print "Setup complete"
+        print("Setup complete")
 
 
     def test01_dir_access(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_1_ID,
                             subjectRoles=())
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test02_file_access_with_role_set(self):
@@ -50,26 +50,26 @@ class TestPdpEoPolicySet(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_2_ID,
                             roleAttributeId='urn:ceda:security:authz:1.0:attr',
                             subjectRoles=('mtci',))
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test03_file_access_with_no_roles_set(self):
         request = self._createRequestCtx(
                             self.__class__.RESOURCE_2_ID,
                             subjectRoles=())
-        print "Starting request"
+        print("Starting request")
         start_time = time.time()
         response = self.pdp.evaluate(request)
-        print("Response received after %fs" % (time.time() - start_time))
-        self.failIf(response is None, "Null response")
+        print(("Response received after %fs" % (time.time() - start_time)))
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
 

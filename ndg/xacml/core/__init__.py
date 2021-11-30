@@ -51,7 +51,7 @@ class XacmlCoreBase(object):
         self.__reader = None
         self.__writer = None
         
-        if not isinstance(self.__class__.ELEMENT_LOCAL_NAME, basestring):
+        if not isinstance(self.__class__.ELEMENT_LOCAL_NAME, str):
             raise NotImplementedError('"ELEMENT_LOCAL_NAME" must be defined in '
                                       'a derived class')
         
@@ -67,7 +67,7 @@ class XacmlCoreBase(object):
         @param value: the XML namespace to set
         @type value: basestring/NoneType                 
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "xmlns" '
                             'attribute; got %r' % type(value))
         self.__xmlns = value

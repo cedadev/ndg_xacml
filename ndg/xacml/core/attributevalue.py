@@ -104,8 +104,8 @@ class AttributeValue(Expression):
         'DnsName',
     )
     NATIVE_TYPES = (
-        basestring,
-        basestring,
+        str,
+        str,
         int,
         bool,
         float,
@@ -114,15 +114,15 @@ class AttributeValue(Expression):
         datetime,
         timedelta,
         timedelta,
-        basestring,
-        basestring,
+        str,
+        str,
         int,
         NotImplemented,
-        basestring,
-        basestring
+        str,
+        str
     )
-    TYPE_MAP = dict(zip(TYPE_NAMES, NATIVE_TYPES))
-    TYPE_URI_MAP = dict(zip(TYPE_NAMES, TYPE_URIS))
+    TYPE_MAP = dict(list(zip(TYPE_NAMES, NATIVE_TYPES)))
+    TYPE_URI_MAP = dict(list(zip(TYPE_NAMES, TYPE_URIS)))
     TYPE = None
     
     __slots__ = ('__value',) 
@@ -237,9 +237,9 @@ class AttributeValueClassMap(VettedDict):
         @rtype: bool
         @raise TypeError: incorrect input type
         """
-        if not isinstance(key, basestring):
+        if not isinstance(key, str):
             raise TypeError('Expecting %r type for key; got %r' % 
-                            (basestring, type(key))) 
+                            (str, type(key))) 
         return True 
     
     @staticmethod
@@ -275,7 +275,7 @@ class AttributeValueClassFactory(object):
     _typeName, _type, _identifier, _className, _classVars, \
         _attributeValueClass = (None,)*6
         
-    for _typeName, _type in AttributeValue.TYPE_MAP.items():
+    for _typeName, _type in list(AttributeValue.TYPE_MAP.items()):
         _identifier = AttributeValue.TYPE_URI_MAP[_typeName]
     
         _className = _typeName + AttributeValue.CLASS_NAME_SUFFIX               
@@ -334,7 +334,7 @@ class AttributeValueClassFactory(object):
         if overwrite:
             cls.IDENTIFIER2CLASS_MAP.update(classMap)
         else:
-            for k, v in classMap.items():
+            for k, v in list(classMap.items()):
                 if k not in cls.IDENTIFIER2CLASS_MAP:
                     cls.IDENTIFIER2CLASS_MAP[k] = v        
                     

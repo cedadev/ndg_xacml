@@ -80,9 +80,9 @@ class AttributeDesignator(Expression):
         @type value: basestring 
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "attributeId" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__attributeId = value  
         
@@ -101,9 +101,9 @@ class AttributeDesignator(Expression):
         @type value: basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "issuer" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__issuer = value   
 

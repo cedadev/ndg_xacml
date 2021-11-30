@@ -43,9 +43,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE1_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test01_02StringConcatenate2Values(self):
@@ -56,9 +56,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE2_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_03StringConcatenate4Values(self):
@@ -69,9 +69,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE3_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test01_04StringConcatenate4Values(self):
@@ -82,9 +82,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE4_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
 
@@ -97,9 +97,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE5_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test02_02UrlStringConcatenate2Values(self):
@@ -111,9 +111,9 @@ class Test(XacmlContextBaseTestCase):
         request = self._createRequestCtx(self.__class__.RESOURCE6_ID,
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test02_03UrlStringConcatenate3Values(self):
@@ -126,9 +126,9 @@ class Test(XacmlContextBaseTestCase):
                                          subjectId='testuser1',
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test02_04UrlStringConcatenate3Values(self):
@@ -141,9 +141,9 @@ class Test(XacmlContextBaseTestCase):
                                          subjectId='testuser1',
                                          subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
 if __name__ == "__main__":

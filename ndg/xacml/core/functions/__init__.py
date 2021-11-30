@@ -27,7 +27,7 @@ SPECIAL_TYPE_MAP = {
     'url-string': 'AnyURI',
     'xpath-node': 'String'}
 
-class AbstractFunction(object):
+class AbstractFunction(object, metaclass=ABCMeta):
     """Abstract Base class for all XACML matching functions
     @cvar FUNCTION_NS: namespace for the given function
     @type FUNCTION_NS: NoneType (must be string in derived type)
@@ -38,7 +38,6 @@ class AbstractFunction(object):
     @cvar V2_0_FUNCTION_NS: XACML 2.0 function namespace prefix
     @type V2_0_FUNCTION_NS: string
     """
-    __metaclass__ = ABCMeta
     
     FUNCTION_NS = None
     V1_0_FUNCTION_NS = "urn:oasis:names:tc:xacml:1.0:function:"
@@ -587,9 +586,9 @@ class FunctionMap(VettedDict):
         @rtype: bool
         @raise TypeError: invalid key type
         """
-        if not isinstance(key, basestring):
+        if not isinstance(key, str):
             raise TypeError('Expecting %r type for key; got %r' % 
-                            (basestring, type(key))) 
+                            (str, type(key))) 
             
         return True 
     
@@ -641,7 +640,7 @@ class FunctionMap(VettedDict):
         cls = FunctionMap
         classPath = None
         
-        for namespacePrefix, pkgNamePrefix in cls.SUPPORTED_NSS.items():
+        for namespacePrefix, pkgNamePrefix in list(cls.SUPPORTED_NSS.items()):
             if functionNs.startswith(namespacePrefix):
                 # Namespace is recognised - translate into a path to a 
                 # function class in the right functions package
@@ -654,7 +653,7 @@ class FunctionMap(VettedDict):
                     prefix = None
                     # Ugly hack to allow for functions that start with a prefix
                     # that isn't a real type.
-                    for pfx in SPECIAL_TYPE_MAP.iterkeys():
+                    for pfx in SPECIAL_TYPE_MAP.keys():
                         pfxsep = pfx + '-'
                         if functionName.startswith(pfxsep):
                             prefix = pfxsep
@@ -677,7 +676,7 @@ class FunctionMap(VettedDict):
         try:
             functionFactory = callModuleObject(classPath)
                       
-        except (ImportError, AttributeError), e:
+        except (ImportError, AttributeError) as e:
             log.error("Error importing function factory class %r for function "
                       "identifier %r: %s", classPath, functionNs, str(e))
             
@@ -703,14 +702,14 @@ class FunctionMap(VettedDict):
                                               "with a new custom function" %
                                               function_ns)
         if function_factory is None:
-            if not isinstance(function_factory_path, basestring):
+            if not isinstance(function_factory_path, str):
                 raise TypeError('Expecting "function_factory_path" keyword '
                                 'set to string function factory path; got %r' %
                                 function_factory_path)
             try:
                 function_factory = callModuleObject(function_factory_path)
                           
-            except (ImportError, AttributeError), e:
+            except (ImportError, AttributeError) as e:
                 log.error("Error importing function factory class %r for custom "
                           "function identifier %r: %s", function_factory_path, 
                           function_ns, str(e))

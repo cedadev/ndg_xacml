@@ -198,7 +198,7 @@ class XacmlDynamicPolicyTestCase(unittest.TestCase):
                                            subjectRoles=('staff',))
         response = self.pdp.evaluate(request)
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision") 
     
         

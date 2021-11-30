@@ -36,9 +36,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role2', 'role3'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test01_02RoleCombination1(self):
@@ -48,9 +48,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role2'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_03RoleCombination1(self):
@@ -60,9 +60,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role3'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_04RoleCombination1(self):
@@ -72,9 +72,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role2', 'role3'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_05RoleCombination1(self):
@@ -84,9 +84,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_06RoleCombination1(self):
@@ -96,9 +96,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role2',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test01_07RoleCombination1(self):
@@ -108,9 +108,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role3',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
     def test01_08RoleCombination1(self):
         # All roles of first combination plus another should result in permit
@@ -119,9 +119,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role2', 'role3', 'role5'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
 
@@ -132,9 +132,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role4',))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test02_02RoleCombination1(self):
@@ -144,9 +144,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role2', 'role4'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
 
@@ -156,9 +156,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role5', 'role6'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test03_02RoleCombination3(self):
@@ -168,9 +168,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role2', 'role3', 'role5', 'role6'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
     def test03_03RoleCombination3(self):
@@ -180,9 +180,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role3', 'role5'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
     def test03_04RoleCombination3(self):
@@ -192,9 +192,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role3', 'role6'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY,
+            self.assertFalse(result.decision != Decision.DENY,
                         "Expecting Deny decision")
 
 
@@ -204,9 +204,9 @@ class Test(XacmlContextBaseTestCase):
                             self.__class__.RESOURCE_ID,
                             subjectRoles=('role1', 'role2', 'role3', 'role4', 'role5', 'role6'))
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT,
+            self.assertFalse(result.decision != Decision.PERMIT,
                         "Expecting Permit decision")
 
 

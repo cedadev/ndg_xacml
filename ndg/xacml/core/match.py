@@ -172,7 +172,7 @@ class MatchBase(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: if incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting string type for "matchId" '
                             'attribute; got %r' % type(value))
             

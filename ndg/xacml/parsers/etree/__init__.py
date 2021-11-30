@@ -16,7 +16,7 @@ import re
 from ndg.xacml import Config, importElementTree
 ElementTree = importElementTree()
 
-class SerialisedElementTree(unicode):
+class SerialisedElementTree(str):
     """Marks a unicode string as being serialised ElementTree XML.
     """
     pass
@@ -32,7 +32,7 @@ if Config.use_lxml:
     def serialiseIfElementTree(obj):
         if ElementTree.iselement(obj):
             return SerialisedElementTree(ElementTree.tostring(obj,
-                                                              encoding=unicode))
+                                                              encoding=str))
         else:
             return obj
     
@@ -62,7 +62,7 @@ def getElementChildren(element):
     """
     for childElem in element:
         if (not hasattr(childElem, 'tag') or
-            not isinstance(childElem.tag, basestring)):
+            not isinstance(childElem.tag, str)):
             continue
         yield childElem
 

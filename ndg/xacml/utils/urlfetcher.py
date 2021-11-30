@@ -11,8 +11,8 @@ __contact__ = "Philip.Kershaw@stfc.ac.uk"
 __revision__ = "$Id$"
 import logging
 import os
-import urllib2
-import urlparse
+import urllib.request, urllib.error, urllib.parse
+import urllib.parse
 
 log = logging.getLogger(__name__)
 
@@ -58,7 +58,7 @@ def open_url(url, debug=False):
     debuglevel = 1 if debug else 0
 
     # Set up handlers for URL opener.
-    http_handler = urllib2.HTTPHandler(debuglevel=debuglevel)
+    http_handler = urllib.request.HTTPHandler(debuglevel=debuglevel)
 
     handlers = [http_handler]
 
@@ -67,15 +67,15 @@ def open_url(url, debug=False):
     # set via http_proxy and https_proxy, but does not take the no_proxy value
     # into account.
     if not _should_use_proxy(url):
-        handlers.append(urllib2.ProxyHandler({}))
+        handlers.append(urllib.request.ProxyHandler({}))
         log.debug("Not using proxy")
 
-    opener = urllib2.build_opener(*handlers)
+    opener = urllib.request.build_opener(*handlers)
 
     # Open the URL and check the response.
     try:
         response = opener.open(url)
-    except urllib2.HTTPError, exc:
+    except urllib.error.HTTPError as exc:
         # Re-raise as simple exception
         raise Exception(exc.__str__())
     return response
@@ -90,7 +90,7 @@ def _should_use_proxy(url):
     """
     no_proxy   = os.environ.get('no_proxy', '')
 
-    urlObj = urlparse.urlparse(url)
+    urlObj = urllib.parse.urlparse(url)
     for np in [h.strip() for h in no_proxy.split(',')]:
         if urlObj.hostname == np:
             return False

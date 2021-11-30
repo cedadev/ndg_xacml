@@ -134,9 +134,9 @@ class XacmlEvalPdpWithCustomAttrTypes(unittest.TestCase):
                     self.__class__.AT_LEAST_ONE_SUBJECT_ROLE_RESTRICTED_ID,
                     action='write')
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.PERMIT, 
+            self.assertFalse(result.decision != Decision.PERMIT, 
                         "Expecting Permit decision")    
                     
     def test02SubjectDoesNotHaveAnyOfSpecifiedRolesForResource(self):
@@ -146,9 +146,9 @@ class XacmlEvalPdpWithCustomAttrTypes(unittest.TestCase):
         action='write')
         
         response = self.pdp.evaluate(request)
-        self.failIf(response is None, "Null response")
+        self.assertFalse(response is None, "Null response")
         for result in response.results:
-            self.failIf(result.decision != Decision.DENY, 
+            self.assertFalse(result.decision != Decision.DENY, 
                         "Expecting Deny decision")    
            
             

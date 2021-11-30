@@ -13,9 +13,8 @@ from abc import ABCMeta, abstractmethod
 from ndg.xacml.core.context.request import Request
 
 
-class PDPInterface(object):
+class PDPInterface(object, metaclass=ABCMeta):
     """Interface class for XACML Policy Enforcement Point"""
-    __metaclass__ = ABCMeta
     __slots__ = ()
     
     @abstractmethod

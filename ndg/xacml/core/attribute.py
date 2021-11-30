@@ -89,9 +89,9 @@ class Attribute(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "dataType" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__dataType = value   
 
@@ -113,9 +113,9 @@ class Attribute(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "attributeId" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__attributeId = value  
         
@@ -134,9 +134,9 @@ class Attribute(XacmlCoreBase):
         @type value: basestring
         @raise TypeError: incorrect input type
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "issuer" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__issuer = value
 

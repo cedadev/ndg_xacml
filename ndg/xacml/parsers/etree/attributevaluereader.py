@@ -121,9 +121,9 @@ class ETreeDataTypeReaderClassMap(VettedDict):
         @rtype: bool
         @raise TypeError: incorrect input type
         """
-        if not isinstance(key, basestring):
+        if not isinstance(key, str):
             raise TypeError('Expecting %r derived type for key; got %r' % 
-                            (basestring, type(key))) 
+                            (str, type(key))) 
         return True 
     
     @staticmethod

@@ -49,9 +49,9 @@ class Subject(RequestChildBase):
         
         @raise TypeError: incorrect type for input
         """
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise TypeError('Expecting %r type for "subjectCategory" '
-                            'attribute; got %r' % (basestring, type(value)))
+                            'attribute; got %r' % (str, type(value)))
             
         self.__subjectCategory = value   
 

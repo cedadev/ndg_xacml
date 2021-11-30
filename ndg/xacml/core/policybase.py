@@ -26,8 +26,7 @@ from ndg.xacml.core.context.result import Result, Decision
 from ndg.xacml.core.context.exceptions import XacmlContextError
 
 
-class PolicyBase(XacmlCoreBase):
-    __metaclass__ = ABCMeta
+class PolicyBase(XacmlCoreBase, metaclass=ABCMeta):
     '''
     Base class for Policy and PolicySet, each of which can be nested within
     PolicySets and evaluated with policy combining algorithms.
@@ -112,7 +111,7 @@ class PolicyBase(XacmlCoreBase):
 
         try:
             result.decision = self.evaluate(request)
-        except XacmlContextError, e:
+        except XacmlContextError as e:
             log.error('Exception raised evaluating request context, returning '
                       '%r decision:%s',
                       e.response.results[0].decision,
